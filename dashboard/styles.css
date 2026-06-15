@@ -1715,13 +1715,14 @@ body {
   flex-direction: column;
   gap: 4px;
   margin-top: 8px;
-  max-height: 220px;
+  max-height: 320px;
   overflow: auto;
   border: 1px solid var(--border-hairline);
   border-radius: 8px;
   padding: 6px;
   background: var(--surface-raised, #fff);
 }
+.location-search-more { margin: 4px 6px 2px; }
 .location-search-hit {
   display: flex;
   justify-content: space-between;
