@@ -3882,6 +3882,16 @@ tr.wf-row-vacating td {
 .connections-platforms {
   margin-bottom: 56px;
 }
+.connections-platforms:last-of-type {
+  margin-bottom: 48px;
+}
+.connections-group-hint {
+  margin: -12px 0 20px;
+  max-width: 48ch;
+  font-size: var(--type-sm);
+  line-height: 1.65;
+  color: var(--text-muted);
+}
 .connections-section-label {
   margin: 0 0 24px;
   font-size: var(--type-xs);

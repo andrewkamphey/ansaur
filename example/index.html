@@ -89,6 +89,76 @@
         padding: 1rem 1.25rem;
         font-size: 0.88rem;
       }
+
+      /* Question rows: question / volume+search / actions */
+      .example-shell .is-mobile { display: none; }
+      .example-shell .data-table thead { display: none; }
+      .example-shell .data-table,
+      .example-shell .data-table tbody { display: block; width: 100%; }
+      .example-shell .data-table tbody tr {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border-hairline);
+      }
+      .example-shell .data-table tbody td {
+        display: block;
+        padding: 0;
+        border: none;
+      }
+      .example-shell .data-table tbody td.kw {
+        font-size: var(--type-sm);
+        line-height: 1.35;
+      }
+      .example-shell .is-desktop { display: none !important; }
+      .example-shell .is-mobile {
+        display: block;
+        width: 100%;
+      }
+      .example-shell .row-mobile-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 8px;
+      }
+      .example-shell .row-mobile-meta .vol {
+        font-family: var(--font-mono);
+        font-size: var(--type-sm);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .example-shell .row-mobile-meta .vol-label {
+        font-family: var(--font-ui);
+        font-size: var(--type-xs);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+      .example-shell .row-mobile-meta .rank-cell {
+        flex: 0 0 auto;
+      }
+      .example-shell .row-mobile-meta .row-search-inline {
+        flex: 1 1 auto;
+        min-width: 0;
+        flex-wrap: wrap !important;
+        gap: 4px;
+        white-space: normal;
+      }
+      .example-shell .row-mobile-pack .row-tools-actions {
+        flex-wrap: wrap !important;
+        gap: 4px;
+        white-space: normal;
+      }
+      .example-shell .row-mobile-meta .btn-search {
+        font-size: var(--type-xs);
+        padding: 4px 8px;
+      }
+      .example-shell .row-mobile-pack .row-tools-actions .btn-sm {
+        font-size: var(--type-sm);
+        padding: 4px 8px;
+      }
     }
   </style>
 </head>
@@ -239,24 +309,45 @@
         );
       }
 
+      function rowMobilePack(row) {
+        return (
+          '<td class="row-mobile-pack is-mobile" colspan="4">' +
+          '<div class="row-mobile-meta">' +
+          '<span class="vol"><span class="vol-label">Global</span> ' +
+          row.global +
+          "</span>" +
+          '<span class="vol"><span class="vol-label">US</span> ' +
+          row.us +
+          "</span>" +
+          '<span class="rank-cell">' +
+          rankCell(row.rank) +
+          "</span>" +
+          rowSearch(row.keyword) +
+          "</div>" +
+          workflowButtons() +
+          "</td>"
+        );
+      }
+
       document.getElementById("example-rows").innerHTML = ROWS.map(function (row) {
         return (
-          "<tr>" +
+          '<tr class="question-row">' +
           '<td class="kw">' +
           esc(row.keyword) +
           "</td>" +
-          '<td class="vol">' +
+          '<td class="vol is-desktop">' +
           row.global +
           "</td>" +
-          '<td class="vol">' +
+          '<td class="vol is-desktop">' +
           row.us +
           "</td>" +
-          '<td class="rank-cell">' +
+          '<td class="rank-cell is-desktop">' +
           rankCell(row.rank) +
           "</td>" +
-          '<td class="row-tools-cell">' +
+          '<td class="row-tools-cell is-desktop">' +
           rowTools(row.keyword) +
           "</td>" +
+          rowMobilePack(row) +
           "</tr>"
         );
       }).join("");

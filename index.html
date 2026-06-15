@@ -822,22 +822,22 @@
     .product-preview .section-inner {
       display: grid;
       gap: 2rem;
-      max-width: 1080px;
+      max-width: 1120px;
     }
     @media (min-width: 900px) {
       .product-preview .section-inner {
-        grid-template-columns: minmax(0, 22rem) 1fr;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
         align-items: center;
-        gap: clamp(1.75rem, 3vw, 2.25rem);
+        gap: clamp(2rem, 4vw, 3rem);
       }
     }
     .product-preview-copy h2 { max-width: none; }
     .product-preview-visual {
       margin: 0;
-      width: min(100%, 22rem);
+      width: min(100%, clamp(18rem, 42vw, 30rem));
     }
     @media (min-width: 900px) {
-      .product-preview-visual { justify-self: end; }
+      .product-preview-visual { justify-self: start; }
     }
     .product-shot {
       display: block;
@@ -855,163 +855,88 @@
       transform: translate(-2px, -2px);
       box-shadow: 8px 8px 0 var(--moss-deep);
     }
+    .product-shot:focus-visible {
+      outline: 2px solid var(--scale-red);
+      outline-offset: 3px;
+    }
+    .product-shot:active {
+      transform: translate(1px, 1px);
+      box-shadow: 2px 2px 0 var(--moss-deep);
+    }
     .product-shot img {
       width: 100%;
       height: auto;
       display: block;
     }
-    .product-shot-caption {
-      margin-top: .5rem;
-      font-size: .72rem;
-      color: var(--text-muted);
-      text-align: left;
-    }
-    .product-shot-caption a {
-      font-weight: 500;
-      color: var(--text-muted);
-      text-decoration: underline;
-      text-underline-offset: .15em;
-    }
-    .product-shot-caption a:hover { color: var(--moss); }
-
-    /* ── How it works: manual vs Ansaur ── */
-    #how h2 { max-width: 26ch; }
-
-    .how-compare {
-      display: grid;
-      gap: clamp(2rem, 4vw, 2.75rem);
-    }
-
-    @media (min-width: 900px) {
-      .how-compare {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-        gap: clamp(1.75rem, 3vw, 2.5rem);
-        align-items: start;
-      }
-    }
-
-    .how-col-label {
-      font-family: var(--mono);
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-      margin-bottom: 1.15rem;
-    }
-
-    .how-col--manual .how-col-label { color: var(--text-muted); }
-    .how-col--ansaur .how-col-label { color: var(--moss); }
-
-    .how-manual-list {
-      list-style: none;
-      display: grid;
-      position: relative;
-      padding-left: 1.85rem;
-    }
-
-    .how-manual-list::before {
-      content: "";
-      position: absolute;
-      left: .45rem;
-      top: .65rem;
-      bottom: .65rem;
-      width: 2px;
-      background: var(--sage-muted);
-    }
-
-    .how-manual-item {
-      position: relative;
-      padding: .7rem 0 .7rem .35rem;
-    }
-
-    .how-manual-item::before {
-      content: "";
-      position: absolute;
-      left: -1.4rem;
-      top: 1rem;
-      width: .5rem;
-      height: .5rem;
-      border-radius: 50%;
-      background: var(--white);
-      border: 2px solid var(--sage-muted);
-    }
-
-    .how-manual-num {
-      display: block;
-      font-family: var(--mono);
-      font-size: .62rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      letter-spacing: .04em;
-      margin-bottom: .2rem;
-    }
-
-    .how-manual-item h3 {
-      font-size: .88rem;
-      font-weight: 700;
-      margin-bottom: .2rem;
-      line-height: 1.25;
-    }
-
-    .how-manual-item p {
-      font-size: .8rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-      max-width: 36ch;
-    }
-
-    .how-col--ansaur {
-      padding: 1.15rem 1.1rem 1.35rem;
+    .product-shot-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .35rem;
+      padding: .7rem 1rem;
       background: var(--sage-soft);
-      border: 1px solid var(--sage-muted);
-      border-radius: var(--r-md);
-    }
-
-    @media (min-width: 900px) {
-      .how-col--ansaur {
-        border: 3px solid var(--moss-deep);
-        box-shadow: var(--shadow-neu);
-        padding: 1.35rem 1.25rem 1.5rem;
-      }
-    }
-
-    .how-ansaur-list {
-      list-style: none;
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .how-ansaur-item {
-      display: grid;
-      gap: .75rem;
-    }
-
-    .how-ansaur-badge {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: .58rem;
+      border-top: 1px solid var(--sage-muted);
+      font-size: .8rem;
       font-weight: 600;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      padding: .18rem .42rem;
-      border-radius: var(--r-sm);
-      background: var(--white);
       color: var(--moss);
-      border: 1px solid var(--sage-muted);
-      margin-bottom: .3rem;
+      letter-spacing: .01em;
+    }
+    .product-shot-label::after {
+      content: "→";
+      font-weight: 700;
+      transition: transform .2s cubic-bezier(.16, 1, .3, 1);
+    }
+    .product-shot:hover .product-shot-label {
+      background: var(--white);
+      color: var(--moss-deep);
+    }
+    .product-shot:hover .product-shot-label::after {
+      transform: translateX(3px);
     }
 
-    .how-ansaur-item h3 {
-      font-size: .95rem;
+    /* ── How it works ── */
+    .how-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .how-card {
+      display: grid;
+      gap: .85rem;
+      align-content: start;
+      padding: 1.25rem 1.15rem 1.35rem;
+      border: 3px solid var(--moss-deep);
+      border-radius: var(--r-md);
+      background: var(--white);
+      box-shadow: var(--shadow-neu);
+    }
+
+    .how-step-num {
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 500;
+      color: var(--scale-red);
+      letter-spacing: .06em;
+    }
+
+    .how-card h3 {
+      font-size: 1rem;
       font-weight: 700;
-      margin-bottom: .2rem;
       line-height: 1.25;
     }
 
-    .how-ansaur-item p {
-      font-size: .82rem;
+    .how-card > p {
+      font-size: .85rem;
       color: var(--text-muted);
       line-height: 1.45;
+      max-width: 26ch;
+    }
+
+    .how-card .works-mock {
+      margin-top: .15rem;
+      border-width: 2px;
+      box-shadow: none;
     }
 
     .works-mock {
@@ -1055,10 +980,6 @@
       padding: 1rem 1.1rem 1.15rem;
     }
 
-    .mock-niche .mock-field + .mock-label {
-      margin-top: .75rem;
-    }
-
     .mock-niche-btn {
       display: inline-block;
       margin-top: .85rem;
@@ -1079,6 +1000,11 @@
       gap: .5rem;
       align-items: center;
       padding: .45rem .75rem;
+    }
+
+    .mock-table-head--simple,
+    .mock-table-row--simple {
+      grid-template-columns: 1fr 3.5rem;
     }
 
     .mock-sort-bar {
@@ -1125,31 +1051,46 @@
       text-align: right;
     }
 
-    .mock-rank {
+    .mock-rank-toggle {
       display: inline-flex;
-      border-radius: var(--r-sm);
-      overflow: hidden;
+      align-items: stretch;
+      padding: 2px;
+      gap: 2px;
+      border-radius: 4px;
+      background: color-mix(in srgb, var(--sage-soft) 80%, var(--white));
       border: 1px solid var(--sage-muted);
+      flex-shrink: 0;
+    }
+
+    .mock-rank-toggle--pending {
+      border-style: dashed;
+    }
+
+    .mock-rank-toggle-btn {
+      padding: .32rem .55rem;
+      font-family: var(--mono);
       font-size: .58rem;
       font-weight: 600;
+      letter-spacing: .02em;
+      line-height: 1.2;
+      color: var(--text-muted);
+      background: transparent;
+      border-radius: 3px;
+      white-space: nowrap;
     }
 
-    .mock-rank span {
-      padding: .2rem .35rem;
-    }
-
-    .mock-rank-yes {
+    .mock-rank-toggle-yes.mock-rank-toggle-btn--on {
       background: var(--moss);
       color: var(--white);
     }
 
-    .mock-rank-no {
+    .mock-rank-toggle-no.mock-rank-toggle-btn--on {
       background: var(--white);
-      color: var(--text-muted);
+      color: var(--text);
+      box-shadow: inset 0 0 0 1px var(--sage-muted);
     }
 
-    .mock-rank-pending .mock-rank-no,
-    .mock-rank-pending .mock-rank-yes {
+    .mock-rank-toggle--pending .mock-rank-toggle-btn {
       background: var(--sage-soft);
       color: var(--text-muted);
     }
@@ -1474,10 +1415,8 @@
               loading="lazy"
               decoding="async"
             />
+            <span class="product-shot-label">Explore the example dashboard</span>
           </a>
-          <figcaption class="product-shot-caption">
-            <a href="/example">Explore the example dashboard</a>
-          </figcaption>
         </figure>
         <div class="product-preview-copy">
           <h2 id="preview-title">Real questions. Real volume. A queue you can act on.</h2>
@@ -1492,139 +1431,66 @@
     <section class="section" id="how" aria-labelledby="how-title">
       <div class="section-inner">
         <p class="section-label">How it works</p>
-        <h2 id="how-title">Hours of manual research. Or three clicks with Ansaur.</h2>
-        <p class="section-lead">Finding the right questions means Google rabbit holes, spreadsheet dumps, and memory checks. Ansaur runs that research and hands you a ranked queue.</p>
-        <div class="how-compare">
-          <div class="how-col how-col--manual">
-            <p class="how-col-label">Without Ansaur</p>
-            <ol class="how-manual-list">
-              <li class="how-manual-item">
-                <span class="how-manual-num">01</span>
-                <h3>Brainstorm seed topics</h3>
-                <p>Start with a vague niche idea and a blank doc. No list yet.</p>
-              </li>
-              <li class="how-manual-item">
-                <span class="how-manual-num">02</span>
-                <h3>Hunt in Google</h3>
-                <p>Click through People Also Ask, autocomplete, and forum threads. Still no clean list of what people actually type.</p>
-              </li>
-              <li class="how-manual-item">
-                <span class="how-manual-num">03</span>
-                <h3>Build a spreadsheet</h3>
-                <p>Copy questions into a sheet. Dedupe by hand. Add columns you hope to fill later.</p>
-              </li>
-              <li class="how-manual-item">
-                <span class="how-manual-num">04</span>
-                <h3>Check your coverage</h3>
-                <p>Google your site or channel plus each keyword. Or trust memory from two years ago.</p>
-              </li>
-              <li class="how-manual-item">
-                <span class="how-manual-num">05</span>
-                <h3>Estimate volume</h3>
-                <p>Guess from autocomplete, or open Ahrefs for the fifth tool this week.</p>
-              </li>
-              <li class="how-manual-item">
-                <span class="how-manual-num">06</span>
-                <h3>Pick what to make next</h3>
-                <p>Sort by gut feel because nothing shows rank status and real volume side by side.</p>
-              </li>
-              <li class="how-manual-item">
-                <span class="how-manual-num">07</span>
-                <h3>Watch the niche</h3>
-                <p>Screenshot competitor titles and hope you notice the gap before someone else films it.</p>
-              </li>
-            </ol>
-          </div>
-          <div class="how-col how-col--ansaur">
-            <p class="how-col-label">With Ansaur</p>
-            <ol class="how-ansaur-list">
-              <li class="how-ansaur-item">
-                <div>
-                  <span class="how-ansaur-badge">One form</span>
-                  <h3>Tell us your niche</h3>
-                  <p>Topic plus your site or channel. Click once.</p>
+        <h2 id="how-title">Your niche in. A ranked queue out.</h2>
+        <p class="section-lead">Real questions people search, with volume and rank status. A queue you can act on.</p>
+        <div class="how-cards">
+          <article class="how-card">
+            <h3>Enter your topic or expertise.</h3>
+            <div class="works-mock mock-niche" aria-hidden="true">
+              <span class="mock-label">Your expertise or niche</span>
+              <span class="mock-field">Google Sheets tutorials for beginners</span>
+              <span class="mock-niche-btn">Get questions</span>
+            </div>
+          </article>
+          <article class="how-card">
+            <h3>Get Questions, With Search Volume</h3>
+            <div class="works-mock" aria-hidden="true">
+              <div class="mock-table-head mock-table-head--simple">
+                <span>Question</span>
+                <span>Volume</span>
+              </div>
+              <div class="mock-table-row mock-table-row--simple">
+                <span class="mock-kw">how to vlookup in google sheets</span>
+                <span class="mock-vol">22k</span>
+              </div>
+              <div class="mock-table-row mock-table-row--simple">
+                <span class="mock-kw">why is my formula returning #n/a</span>
+                <span class="mock-vol">8.4k</span>
+              </div>
+              <div class="mock-table-row mock-table-row--simple">
+                <span class="mock-kw">can google sheets send email alerts</span>
+                <span class="mock-vol">3.2k</span>
+              </div>
+            </div>
+          </article>
+          <article class="how-card">
+            <span class="how-step-num">03</span>
+            <h3>Track your rank</h3>
+            <p>See what ranks. Track what you publish.</p>
+            <div class="works-mock" aria-hidden="true">
+              <div class="mock-track-row">
+                <span class="mock-kw">how to vlookup in google sheets</span>
+                <div class="mock-rank-toggle" role="group">
+                  <span class="mock-rank-toggle-btn mock-rank-toggle-yes mock-rank-toggle-btn--on">Page 1</span>
+                  <span class="mock-rank-toggle-btn mock-rank-toggle-no">Not</span>
                 </div>
-                <div class="works-mock mock-niche" aria-hidden="true">
-                  <span class="mock-label">Your expertise or niche</span>
-                  <span class="mock-field">Google Sheets tutorials for beginners</span>
-                  <span class="mock-label">Your site or channel</span>
-                  <span class="mock-field mock-field--mono">bettersheets.co</span>
-                  <span class="mock-niche-btn">Get questions</span>
+              </div>
+              <div class="mock-track-row">
+                <span class="mock-kw">google sheets arrayformula examples</span>
+                <div class="mock-rank-toggle mock-rank-toggle--pending" role="group">
+                  <span class="mock-rank-toggle-btn mock-rank-toggle-yes">Page 1</span>
+                  <span class="mock-rank-toggle-btn mock-rank-toggle-no">Not</span>
                 </div>
-              </li>
-              <li class="how-ansaur-item">
-                <div>
-                  <span class="how-ansaur-badge">Done for you</span>
-                  <h3>Get a ranked question list</h3>
-                  <p>Real questions people search, with volume and rank status already filled in.</p>
+              </div>
+              <div class="mock-track-row">
+                <span class="mock-kw">why is my formula returning #n/a</span>
+                <div class="mock-rank-toggle" role="group">
+                  <span class="mock-rank-toggle-btn mock-rank-toggle-yes">Page 1</span>
+                  <span class="mock-rank-toggle-btn mock-rank-toggle-no mock-rank-toggle-btn--on">Not</span>
                 </div>
-                <div class="works-mock" aria-hidden="true">
-                  <div class="mock-sort-bar">Global volume ↓ · 47 questions · 186k/mo total</div>
-                  <div class="mock-table-head">
-                    <span>Question</span>
-                    <span>Global</span>
-                    <span>US</span>
-                    <span>Rank</span>
-                  </div>
-                  <div class="mock-table-row">
-                    <span class="mock-kw">how to vlookup in google sheets</span>
-                    <span class="mock-vol">22k</span>
-                    <span class="mock-vol">14k</span>
-                    <span class="mock-rank mock-rank-pending"><span class="mock-rank-yes">Pg1</span><span class="mock-rank-no">Not</span></span>
-                  </div>
-                  <div class="mock-table-row">
-                    <span class="mock-kw">why is my formula returning #n/a</span>
-                    <span class="mock-vol">8.4k</span>
-                    <span class="mock-vol">5.1k</span>
-                    <span class="mock-rank"><span class="mock-rank-yes">Pg1</span><span class="mock-rank-no">Not</span></span>
-                  </div>
-                  <div class="mock-table-row">
-                    <span class="mock-kw">can google sheets send email alerts</span>
-                    <span class="mock-vol">3.2k</span>
-                    <span class="mock-vol">2.4k</span>
-                    <span class="mock-rank"><span class="mock-rank-yes">Pg1</span><span class="mock-rank-no">Not</span></span>
-                  </div>
-                </div>
-              </li>
-              <li class="how-ansaur-item">
-                <div>
-                  <span class="how-ansaur-badge">Few clicks</span>
-                  <h3>Search, filter, and track</h3>
-                  <p>Film it, write it, or mark first page. Filter by what is left to make.</p>
-                </div>
-                <div class="works-mock" aria-hidden="true">
-                  <div class="mock-toolbar">
-                    <span class="mock-search">vlookup</span>
-                    <span class="mock-pill mock-pill--on">Questions</span>
-                    <span class="mock-pill">Filmed</span>
-                    <span class="mock-pill">Written</span>
-                  </div>
-                  <div class="mock-track-row">
-                    <span class="mock-kw">how to vlookup in google sheets</span>
-                    <div class="mock-actions">
-                      <span class="mock-btn mock-btn--on">Film it</span>
-                      <span class="mock-btn">Write</span>
-                      <span class="mock-btn">Skip</span>
-                    </div>
-                  </div>
-                  <div class="mock-track-row">
-                    <span class="mock-kw">google sheets arrayformula examples</span>
-                    <div class="mock-actions">
-                      <span class="mock-btn">Film it</span>
-                      <span class="mock-btn mock-btn--on">Write</span>
-                      <span class="mock-btn">Skip</span>
-                    </div>
-                  </div>
-                  <div class="mock-nav">
-                    <span class="mock-nav-item mock-nav-item--active">Questions<strong>47</strong></span>
-                    <span class="mock-nav-item">Filmed<strong>12</strong></span>
-                    <span class="mock-nav-item">Written<strong>8</strong></span>
-                    <span class="mock-nav-item">First Page<strong>19</strong></span>
-                  </div>
-                </div>
-              </li>
-            </ol>
-          </div>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1632,19 +1498,39 @@
     <section class="section section-sage" id="uses">
       <div class="section-inner">
         <h2>How to use the Questions</h2>
-        <p class="section-lead">Real search questions are not just keywords. They are content briefs waiting for someone who actually knows the answer.</p>
+        <p class="section-lead">Your audience is already asking themselves these in Google. Answer them before they think to reach out.</p>
         <div class="uses-grid">
           <article class="use-item">
+            <h3>LinkedIn Posts</h3>
+            <p>Turn a high-volume question into a post that stops the scroll. You are answering what they are already wondering.</p>
+          </article>
+          <article class="use-item">
+            <h3>Tweets on X</h3>
+            <p>One question, one thread. Reply to what people in your niche are silently asking right now.</p>
+          </article>
+          <article class="use-item">
+            <h3>Facebook Posts</h3>
+            <p>Share answers to the questions your community types into the search bar at 11pm.</p>
+          </article>
+          <article class="use-item">
+            <h3>Email Marketing</h3>
+            <p>Each question is a subject line waiting to happen. Hit inboxes with answers people already want.</p>
+          </article>
+          <article class="use-item">
+            <h3>Create Courses</h3>
+            <p>Stack related questions into a curriculum. Your audience mapped the syllabus for you.</p>
+          </article>
+          <article class="use-item">
             <h3>Reddit content</h3>
-            <p>Create genuine answers instead of self-promotion that gets you banned.</p>
+            <p>Answer the exact thread before someone else does. Genuine help, not self-promo that gets you banned.</p>
           </article>
           <article class="use-item">
             <h3>Videos</h3>
-            <p>Make videos that answer super specific questions and shape you into an expert people trust.</p>
+            <p>Film the question people are already searching. Become the expert they trust.</p>
           </article>
           <article class="use-item">
             <h3>Articles</h3>
-            <p>Write articles that will rank on Google <em>and</em> AI will love to recommend to real people.</p>
+            <p>Publish answers that rank on Google and AI loves to recommend.</p>
           </article>
         </div>
       </div>
