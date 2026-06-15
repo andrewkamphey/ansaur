@@ -1796,6 +1796,16 @@ body {
   font-family: var(--font-mono);
   font-size: var(--type-md);
 }
+.location-country-select {
+  width: 100%;
+  max-width: 420px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+  font: inherit;
+  font-size: var(--type-md);
+  background: var(--surface-raised, #fff);
+}
 .seed-preview { margin: 0; padding-left: 20px; color: var(--text-muted); font-size: var(--type-sm); }
 
 /* Jobs desk — research command center */

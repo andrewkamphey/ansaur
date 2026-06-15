@@ -368,19 +368,38 @@
 
       .hero {
         padding-top: .85rem;
-        gap: 1.25rem;
+        padding-bottom: 2.5rem;
+        gap: 1rem;
       }
 
       .hero h1 {
-        margin-bottom: .85rem;
+        font-size: clamp(1.85rem, 8vw, 2.35rem);
+        line-height: 1.05;
+        margin-bottom: .65rem;
       }
 
       .hero-lead {
-        margin-bottom: 1.15rem;
+        font-size: .95rem;
+        line-height: 1.45;
+        margin-bottom: .9rem;
+      }
+
+      .hero-actions {
+        gap: .5rem;
+      }
+
+      .hero-actions .btn {
+        padding: .55rem .95rem;
+        font-size: .85rem;
       }
 
       .hero-visual {
-        min-height: clamp(200px, 36vw, 260px);
+        min-height: 0;
+      }
+
+      .hero-mascot {
+        width: min(82%, 250px);
+        margin-inline: auto;
       }
 
       .hero-queries { inset: -2% -2%; }
@@ -830,19 +849,19 @@
     .product-preview .section-inner {
       display: grid;
       gap: 2rem;
-      max-width: 1180px;
+      max-width: 1080px;
     }
     @media (min-width: 900px) {
       .product-preview .section-inner {
-        grid-template-columns: minmax(0, 18rem) 1fr;
+        grid-template-columns: minmax(0, 22rem) 1fr;
         align-items: center;
-        gap: 2.5rem;
+        gap: clamp(1.75rem, 3vw, 2.25rem);
       }
     }
     .product-preview-copy h2 { max-width: none; }
     .product-preview-visual {
       margin: 0;
-      max-width: 18rem;
+      width: min(100%, 22rem);
     }
     @media (min-width: 900px) {
       .product-preview-visual { justify-self: end; }
@@ -865,9 +884,7 @@
     }
     .product-shot img {
       width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      object-position: left top;
+      height: auto;
       display: block;
     }
     .product-shot-caption {
