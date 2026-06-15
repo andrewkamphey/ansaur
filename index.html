@@ -966,11 +966,44 @@
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
+
+      .site-nav {
+        --brand-mascot-width: 56px;
+        gap: .65rem;
+      }
+
+      .brand {
+        position: static;
+        padding-right: 0;
+        flex-shrink: 0;
+      }
+
+      .brand-mascot {
+        left: 50%;
+        margin-left: 0;
+        transform: translateX(-50%) translateY(calc((1 - var(--mascot-reveal)) * 110%));
+        z-index: 0;
+      }
+
+      .nav-cta {
+        position: relative;
+        z-index: 2;
+        flex-shrink: 0;
+        padding: .52rem .72rem;
+        font-size: .78rem;
+        white-space: nowrap;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .brand-mascot {
         transform: translateY(0);
+      }
+
+      @media (max-width: 640px) {
+        .brand-mascot {
+          transform: translateX(-50%) translateY(0);
+        }
       }
 
       .site-nav .nav-cta {
@@ -1012,8 +1045,8 @@
       <div class="hero-copy">
         <h1 id="hero-title">REAL QUESTIONS<br /><em>YOU CAN ANSWER</em></h1>
         <p class="hero-lead">
-          Get exact questions people really search for. Get actual keyword data to prioritize what
-          to make, and ultimately rank for the right words, people are looking for.
+          Real questions people search, with keyword data on each one. Know what to write or
+          film next, and rank for the terms your audience is already looking for.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary hero-cta" href="#pricing">Get Me Questions</a>
@@ -1265,11 +1298,11 @@
             <ul class="price-includes">
               <li>Everything in Creator</li>
               <li>More rechecks and discovery headroom</li>
-              <li>Top-ups: $10 / 2,000 credits</li>
             </ul>
             <a class="btn btn-neu price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Pro%20plan">Go Pro</a>
           </article>
         </div>
+        <p class="pricing-extra">Need more than your monthly credits? <strong>Top-ups: $10 / 2,000 credits</strong> on Creator and Pro.</p>
       </div>
     </section>
 
