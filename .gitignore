@@ -1,0 +1,25 @@
+# Ignore everything in the repo root
+/*
+
+# Keep only root index.html and this file
+!/index.html
+!/.gitignore
+# get example png
+!/dashboard/
+/dashboard/*
+!/dashboard/example/
+!/dashboard/example/**
+!/dashboard/assets/
+!/dashboard/assets/example-dashboard-preview.png
+
+
+# ORIGINAL
+.env.local
+data/
+credentials/
+imports/*.csv
+__pycache__/
+dashboard/fonts/*.woff2
+dashboard/fonts/*.woff
+dashboard/fonts/*.ttf
+dashboard/fonts/*.otf
