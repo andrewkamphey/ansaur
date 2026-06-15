@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Example: Ansaur Questions dashboard</title>
+  <meta name="description" content="Sample Ansaur dashboard for a dental practice niche. Example data only. Sign up to run research on your niche." />
+  <link rel="icon" href="/assets/ansaur-a.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .example-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      padding: 14px clamp(1rem, 3vw, 1.75rem);
+      background: var(--ansaur-moss-deep);
+      color: var(--text-on-rail);
+      font-size: var(--type-sm);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .example-banner-text {
+      flex: 1 1 220px;
+      min-width: 0;
+      line-height: 1.45;
+      color: color-mix(in srgb, var(--ansaur-white) 88%, var(--ansaur-sage));
+    }
+    .example-shell .demo-interactive {
+      pointer-events: none;
+      user-select: none;
+    }
+    .example-shell .row-search-inline a {
+      pointer-events: auto;
+    }
+    .example-shell .example-cta {
+      pointer-events: auto;
+    }
+    a.example-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-left: auto;
+      padding: 0.85rem 1.5rem;
+      border-radius: 4px;
+      border: 3px solid var(--ansaur-white);
+      background: var(--ansaur-red);
+      color: var(--ansaur-white);
+      text-decoration: none;
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      white-space: nowrap;
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--ansaur-red-deep) 40%, transparent),
+        5px 5px 0 color-mix(in srgb, var(--ansaur-moss-deep) 85%, black);
+      transition:
+        transform 0.14s cubic-bezier(0.23, 1, 0.32, 1),
+        box-shadow 0.14s cubic-bezier(0.23, 1, 0.32, 1),
+        background 0.14s ease;
+    }
+    a.example-cta:hover {
+      background: var(--ansaur-red-deep);
+      color: var(--ansaur-white);
+      transform: translate(-2px, -2px);
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--ansaur-red-deep) 55%, transparent),
+        7px 7px 0 color-mix(in srgb, var(--ansaur-moss-deep) 85%, black);
+    }
+    a.example-cta:active {
+      transform: translate(1px, 1px);
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--ansaur-red-deep) 40%, transparent),
+        3px 3px 0 color-mix(in srgb, var(--ansaur-moss-deep) 85%, black);
+    }
+    @media (max-width: 720px) {
+      .example-shell .rail { display: none; }
+      .example-banner .example-cta {
+        margin-left: 0;
+        width: 100%;
+        padding: 1rem 1.25rem;
+        font-size: 0.88rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="example-banner">
+    <span class="example-banner-text">Example data for a sample dental practice niche. Not connected to live research.</span>
+    <a class="example-cta" href="/#pricing">Get questions for your niche</a>
+  </div>
+
+  <div class="variant-a example-shell" id="example-app">
+    <aside class="rail demo-interactive">
+      <div class="rail-brand">
+        <h1 class="rail-wordmark">
+          <span class="rail-wordmark-brand">Ansaur</span><span class="rail-wordmark-tld">.com</span>
+        </h1>
+        <a class="app-logo" href="/" aria-label="Ansaur home">
+          <img src="/assets/ansaur-mascot-white.png" alt="" />
+        </a>
+      </div>
+      <div class="nav-group-label">KEYWORD RESEARCH</div>
+      <a class="nav-item active" href="#"><span class="nav-label">Questions</span><span class="nav-count">47</span></a>
+      <a class="nav-item nav-sub-item" href="#"><span class="nav-label">Skipped</span><span class="nav-count">6</span></a>
+      <a class="nav-item nav-sub-item" href="#"><span class="nav-label">Filmed</span><span class="nav-count">12</span></a>
+      <a class="nav-item nav-sub-item" href="#"><span class="nav-label">Written</span><span class="nav-count">8</span></a>
+      <a class="nav-item nav-sub-item" href="#"><span class="nav-label">First Page</span><span class="nav-count">19</span></a>
+      <a class="nav-item nav-sub-item" href="#"><span class="nav-label">All Questions</span><span class="nav-count">92</span></a>
+      <a class="nav-item" href="#"><span class="nav-label">Scout</span></a>
+    </aside>
+
+    <div class="main demo-interactive">
+      <div class="page-header">
+        <h2 class="page-title">Questions</h2>
+        <span class="page-meta">47 to act on</span>
+      </div>
+      <div class="toolbar">
+        <span class="btn-sm btn-export" aria-hidden="true">Export CSV</span>
+        <div class="toolbar-filters">
+          <span class="btn-sm btn-ghost toolbar-filter-btn">Hide How</span>
+          <input class="search" type="search" placeholder="Search questions…" value="" readonly tabindex="-1" />
+          <select class="sort-select sort-select--plain" aria-label="Sort questions" tabindex="-1">
+            <option selected>Global volume ↓</option>
+          </select>
+        </div>
+      </div>
+      <div class="search-volume-bar">
+        <span class="search-volume-count"><strong>47</strong> questions</span>
+        <span class="search-volume-sep">·</span>
+        <span class="search-volume-totals"><strong>186k</strong> global / <strong>124k</strong> US monthly volume</span>
+      </div>
+      <div class="content">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Global</th>
+              <th>US</th>
+              <th>Rank</th>
+              <th>Search &amp; actions</th>
+            </tr>
+          </thead>
+          <tbody id="example-rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var ROWS = [
+        { keyword: "does dental insurance cover implants", global: "14.8k", us: "9.2k", rank: "pending" },
+        { keyword: "why does my tooth hurt when i bite down", global: "11.2k", us: "7.6k", rank: "not" },
+        { keyword: "what is a root canal procedure", global: "12.4k", us: "8.1k", rank: "pending" },
+        { keyword: "how long do dental implants last", global: "9.9k", us: "7.2k", rank: "not" },
+        { keyword: "can you whiten teeth with baking soda", global: "8.1k", us: "5.4k", rank: "pending" },
+        { keyword: "why do my gums bleed when i floss", global: "6.6k", us: "4.8k", rank: "pending" },
+        { keyword: "should i get veneers or crowns", global: "1.8k", us: "1.4k", rank: "pending" },
+      ];
+
+      function esc(text) {
+        return String(text)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function rowSearch(keyword) {
+        var q = encodeURIComponent(keyword);
+        var links = [
+          ["YouTube", "https://www.youtube.com/results?search_query=" + q],
+          ["Google", "https://www.google.com/search?q=" + q + "&gl=us&hl=en"],
+          ["Reddit", "https://www.reddit.com/search/?q=" + q],
+          ["Twitter", "https://x.com/search?q=" + q + "&f=live"],
+          ["LinkedIn", "https://www.linkedin.com/search/results/all/?keywords=" + q],
+        ];
+        return (
+          '<div class="row-search-inline" role="group" aria-label="Search">' +
+          links
+            .map(function (pair) {
+              return (
+                '<a class="btn-search btn-outline-sage" href="' +
+                pair[1] +
+                '" target="_blank" rel="noopener">' +
+                pair[0] +
+                "</a>"
+              );
+            })
+            .join("") +
+          "</div>"
+        );
+      }
+
+      function rankCell(rank) {
+        var pending = rank === "pending";
+        var notRank = rank === "not";
+        return (
+          '<div class="rank-toggle' +
+          (pending ? " rank-toggle-pending" : "") +
+          '" role="group" aria-label="Page 1 check">' +
+          '<button type="button" class="rank-toggle-btn rank-toggle-yes"' +
+          (notRank ? ' aria-pressed="false"' : "") +
+          ' tabindex="-1">Page 1</button>' +
+          '<button type="button" class="rank-toggle-btn rank-toggle-no"' +
+          (notRank ? ' aria-pressed="true"' : "") +
+          ' tabindex="-1">Not</button>' +
+          "</div>"
+        );
+      }
+
+      function workflowButtons() {
+        return (
+          '<div class="row-tools-actions" role="group" aria-label="Actions">' +
+          '<button type="button" class="btn-sm" tabindex="-1" title="Published an article answering this">Write</button>' +
+          '<button type="button" class="btn-sm" tabindex="-1" title="Track which platforms you posted on">Reply</button>' +
+          '<button type="button" class="btn-sm" tabindex="-1" title="Wove this keyword into your site. Check rankings later">Optimize</button>' +
+          '<button type="button" class="btn-sm" tabindex="-1" title="Filmed a YouTube video for this">Film it</button>' +
+          '<button type="button" class="btn-sm" tabindex="-1" title="Park this keyword in Skipped">Skip</button>' +
+          "</div>"
+        );
+      }
+
+      function rowTools(keyword) {
+        return (
+          '<div class="row-tools">' +
+          rowSearch(keyword) +
+          workflowButtons() +
+          "</div>"
+        );
+      }
+
+      document.getElementById("example-rows").innerHTML = ROWS.map(function (row) {
+        return (
+          "<tr>" +
+          '<td class="kw">' +
+          esc(row.keyword) +
+          "</td>" +
+          '<td class="vol">' +
+          row.global +
+          "</td>" +
+          '<td class="vol">' +
+          row.us +
+          "</td>" +
+          '<td class="rank-cell">' +
+          rankCell(row.rank) +
+          "</td>" +
+          '<td class="row-tools-cell">' +
+          rowTools(row.keyword) +
+          "</td>" +
+          "</tr>"
+        );
+      }).join("");
+    })();
+  </script>
+</body>
+</html>

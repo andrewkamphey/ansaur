@@ -13,6 +13,8 @@
 # Static site assets (symlinked from root for GitHub Pages)
 !/dashboard/
 /dashboard/*
+!/dashboard/example/
+!/dashboard/example/**
 !/dashboard/assets/
 !/dashboard/assets/ansaur-a.svg
 !/dashboard/assets/ansaur-mascot-white.png
