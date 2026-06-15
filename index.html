@@ -362,6 +362,27 @@
     }
 
     @media (max-width: 859px) {
+      .site-nav {
+        --nav-pad-y: .65rem;
+      }
+
+      .hero {
+        padding-top: .85rem;
+        gap: 1.25rem;
+      }
+
+      .hero h1 {
+        margin-bottom: .85rem;
+      }
+
+      .hero-lead {
+        margin-bottom: 1.15rem;
+      }
+
+      .hero-visual {
+        min-height: clamp(200px, 36vw, 260px);
+      }
+
       .hero-queries { inset: -2% -2%; }
       .query-slot--hide-sm { display: none; }
       .query-pill { max-width: 48vw; font-size: .65rem; }
