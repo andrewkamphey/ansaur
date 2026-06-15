@@ -117,8 +117,8 @@ body {
 }
 .badge-ranks { background: var(--signal-rank-yes); color: var(--text-on-rail); }
 .badge-on-page {
-  background: oklch(0.94 0.025 155);
-  color: var(--ansaur-moss-deep);
+  background: var(--ansaur-moss);
+  color: var(--text-on-rail);
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
