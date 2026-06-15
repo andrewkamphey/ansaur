@@ -186,7 +186,7 @@
       grid-template-columns: 1fr;
       gap: clamp(2rem, 5vw, 4rem);
       align-items: center;
-      padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 4vw, 3rem) clamp(4rem, 10vw, 7rem);
+      padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 4vw, 3rem) 0;
       max-width: 1180px;
       margin: 0 auto;
       position: relative;
@@ -497,10 +497,30 @@
     }
 
     .use-item h3 {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: .5rem;
+      line-height: 1.25;
     }
+
+    .use-item h3::before {
+      content: "";
+      flex-shrink: 0;
+      width: 1.35rem;
+      height: 1.35rem;
+      background: center / contain no-repeat;
+    }
+    .use-item--linkedin h3::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20role%3D%22img%22%20aria-hidden%3D%22true%22%3E%3Cpath%20fill%3D%22%230A66C2%22%20d%3D%22M20.447%2020.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853%200-2.136%201.445-2.136%202.939v5.667H9.351V9h3.414v1.561h.046c.477-.9%201.637-1.85%203.37-1.85%203.601%200%204.267%202.37%204.267%205.455v6.286zM5.337%207.433a2.062%202.062%200%200%201-2.063-2.065%202.064%202.064%200%201%201%202.063%202.065zm1.782%2013.019H3.555V9h3.564v11.452zM22.225%200H1.771C.792%200%200%20.774%200%201.729v20.542C0%2023.227.792%2024%201.771%2024h20.451C23.2%2024%2024%2023.227%2024%2022.271V1.729C24%20.774%2023.2%200%2022.222%200h.003z%22/%3E%3C/svg%3E"); }
+    .use-item--x h3::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20role%3D%22img%22%20aria-hidden%3D%22true%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M18.244%202.25h3.308l-7.227%208.26%208.502%2011.24H16.17l-5.214-6.817L4.99%2021.75H1.68l7.73-8.835L1.254%202.25H8.08l4.713%206.231zm-1.161%2017.52h1.833L7.084%204.126H5.117z%22/%3E%3C/svg%3E"); }
+    .use-item--facebook h3::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20role%3D%22img%22%20aria-hidden%3D%22true%22%3E%3Cpath%20fill%3D%22%231877F2%22%20d%3D%22M24%2012.073c0-6.627-5.373-12-12-12s-12%205.373-12%2012c0%205.99%204.388%2010.954%2010.125%2011.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007%201.792-4.669%204.533-4.669%201.312%200%202.686.235%202.686.235v2.953H15.83c-1.491%200-1.956.925-1.956%201.874v2.25h3.328l-.532%203.47h-2.796v8.385C19.612%2023.027%2024%2018.062%2024%2012.073z%22/%3E%3C/svg%3E"); }
+    .use-item--email h3::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20role%3D%22img%22%20aria-hidden%3D%22true%22%3E%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%2220%22%20height%3D%2216%22%20rx%3D%222%22%20stroke%3D%22%233F6B4E%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22m2%207%2010%207%2010-7%22%20stroke%3D%22%233F6B4E%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E"); }
+    .use-item--courses h3::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20role%3D%22img%22%20aria-hidden%3D%22true%22%3E%3Cpath%20d%3D%22M12%203%202%208l10%205%2010-5-10-5Z%22%20stroke%3D%22%233F6B4E%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M6%2011v4.5c0%20.9%202.2%202.5%206%202.5s6-1.6%206-2.5V11%22%20stroke%3D%22%233F6B4E%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M20%208.5V15%22%20stroke%3D%22%233F6B4E%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E"); }
+    .use-item--reddit h3::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20role%3D%22img%22%20aria-hidden%3D%22true%22%3E%3Cpath%20fill%3D%22%23FF4500%22%20d%3D%22M12%200A12%2012%200%200%200%200%2012a12%2012%200%200%200%2012%2012%2012%2012%200%200%200%2012-12A12%2012%200%200%200%2012%200zm5.01%204.744c.688%200%201.25.561%201.25%201.249a1.25%201.25%200%200%201-2.498.056l-2.597-.547-.8%203.747c1.824.07%203.48.632%204.674%201.488.308-.309.738-.491%201.207-.491.968%200%201.754.786%201.754%201.754%200%20.716-.435%201.333-1.01%201.614a3.111%203.111%200%200%201%20.042.52c0%202.694-3.13%204.87-7.004%204.87-3.874%200-7.004-2.176-7.004-4.87%200-.183.015-.366.043-.534A1.748%201.748%200%200%201%204.028%2012c0-.968.786-1.754%201.754-1.754.463%200%20.898.196%201.207.49%201.207-.883%202.878-1.43%204.744-1.487l.885-4.182a.342.342%200%200%201%20.14-.247.35.35%200%200%201%20.238-.042l2.906.617a1.214%201.214%200%200%201%201.108-.701zM9.25%2012C8.561%2012%208%2012.562%208%2013.25c0%20.687.561%201.248%201.25%201.248.687%200%201.248-.561%201.248-1.249%200-.688-.561-1.249-1.249-1.249zm5.5%200c-.687%200-1.248.561-1.248%201.25%200%20.687.561%201.248%201.249%201.248.688%200%201.249-.561%201.249-1.249%200-.687-.562-1.249-1.25-1.249zm-5.466%203.99a.327.327%200%200%200-.231.094.33.33%200%200%200%200%20.463c.842.842%202.484.913%202.961.913.477%200%202.105-.056%202.961-.913a.361.361%200%200%200%20.029-.463.33.33%200%200%200-.464%200c-.547.533-1.684.73-2.512.73-.828%200-1.979-.196-2.512-.73a.326.326%200%200%200-.232-.095z%22/%3E%3C/svg%3E"); }
+    .use-item--youtube h3::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20role%3D%22img%22%20aria-hidden%3D%22true%22%3E%3Cpath%20fill%3D%22%23FF0000%22%20d%3D%22M23.498%206.186a3.016%203.016%200%200%200-2.122-2.136C19.505%203.545%2012%203.545%2012%203.545s-7.505%200-9.377.505A3.017%203.017%200%200%200%20.502%206.186C0%208.07%200%2012%200%2012s0%203.93.502%205.814a3.016%203.016%200%200%200%202.122%202.136c1.871.505%209.376.505%209.376.505s7.505%200%209.377-.505a3.015%203.015%200%200%200%202.122-2.136C24%2015.93%2024%2012%2024%2012s0-3.93-.502-5.814zM9.545%2015.568V8.432L15.818%2012l-6.273%203.568z%22/%3E%3C/svg%3E"); }
+    .use-item--article h3::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20role%3D%22img%22%20aria-hidden%3D%22true%22%3E%3Cpath%20d%3D%22M6%204h12a2%202%200%200%201%202%202v14l-4-3-4%203-4-3-4%203V6a2%202%200%200%201%202-2Z%22%20stroke%3D%22%233F6B4E%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M8%208h8M8%2012h8M8%2016h5%22%20stroke%3D%22%233F6B4E%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E"); }
 
     .use-item p {
       font-size: .92rem;
@@ -903,9 +923,9 @@
 
     .how-card {
       display: grid;
-      gap: .85rem;
+      gap: .7rem;
       align-content: start;
-      padding: 1.25rem 1.15rem 1.35rem;
+      padding: 1.15rem 1.1rem 1.2rem;
       border: 3px solid var(--moss-deep);
       border-radius: var(--r-md);
       background: var(--white);
@@ -1325,10 +1345,9 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <h1 id="hero-title">REAL QUESTIONS<br /><em>YOU CAN ANSWER</em></h1>
+        <h1 id="hero-title">People have<br />real questions<br /><em>You have answers</em></h1>
         <p class="hero-lead">
-          Real questions people search, with keyword data on each one. Know what to write or
-          film next, and rank for the terms your audience is already looking for.
+          Get keyword data, and a command center to do something with your knowledge. Figure out what content to make now. Rank for the terms your audience is already looking for.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary hero-cta" href="#pricing">Get Me Questions</a>
@@ -1415,11 +1434,11 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="product-shot-label">Explore the example dashboard</span>
+            <span class="product-shot-label">Explore a dashboard</span>
           </a>
         </figure>
         <div class="product-preview-copy">
-          <h2 id="preview-title">Real questions. Real volume. A queue you can act on.</h2>
+          <h2 id="preview-title">Real questions.<br>Real volume.<br>So you can prioritize your work.</h2>
           <p class="section-lead" style="margin-bottom: 0">
             Ansaur checks whether you already rank, then lines up the gaps with search volume
             so you know what to film, write, or answer next. Not a keyword wheel, a workflow.
@@ -1430,7 +1449,6 @@
 
     <section class="section" id="how" aria-labelledby="how-title">
       <div class="section-inner">
-        <p class="section-label">How it works</p>
         <h2 id="how-title">Your niche in. A ranked queue out.</h2>
         <p class="section-lead">Real questions people search, with volume and rank status. A queue you can act on.</p>
         <div class="how-cards">
@@ -1464,9 +1482,7 @@
             </div>
           </article>
           <article class="how-card">
-            <span class="how-step-num">03</span>
-            <h3>Track your rank</h3>
-            <p>See what ranks. Track what you publish.</p>
+            <h3>Track which terms ranks</h3>
             <div class="works-mock" aria-hidden="true">
               <div class="mock-track-row">
                 <span class="mock-kw">how to vlookup in google sheets</span>
@@ -1500,31 +1516,31 @@
         <h2>How to use the Questions</h2>
         <p class="section-lead">Your audience is already asking themselves these in Google. Answer them before they think to reach out.</p>
         <div class="uses-grid">
-          <article class="use-item">
+          <article class="use-item use-item--linkedin">
             <h3>LinkedIn Posts</h3>
             <p>Turn a high-volume question into a post that stops the scroll. You are answering what they are already wondering.</p>
           </article>
-          <article class="use-item">
+          <article class="use-item use-item--x">
             <h3>Tweets on X</h3>
             <p>One question, one thread. Reply to what people in your niche are silently asking right now.</p>
           </article>
-          <article class="use-item">
+          <article class="use-item use-item--facebook">
             <h3>Facebook Posts</h3>
             <p>Share answers to the questions your community types into the search bar at 11pm.</p>
           </article>
-          <article class="use-item">
+          <article class="use-item use-item--email">
             <h3>Email Marketing</h3>
             <p>Each question is a subject line waiting to happen. Hit inboxes with answers people already want.</p>
           </article>
-          <article class="use-item">
+          <article class="use-item use-item--courses">
             <h3>Create Courses</h3>
             <p>Stack related questions into a curriculum. Your audience mapped the syllabus for you.</p>
           </article>
-          <article class="use-item">
+          <article class="use-item use-item--reddit">
             <h3>Reddit content</h3>
             <p>Answer the exact thread before someone else does. Genuine help, not self-promo that gets you banned.</p>
           </article>
-          <article class="use-item">
+          <article class="use-item use-item--youtube">
             <h3>Videos</h3>
             <p>Film the question people are already searching. Become the expert they trust.</p>
           </article>
@@ -1582,8 +1598,7 @@
 
     <section class="section" id="pricing">
       <div class="section-inner">
-        <p class="section-label">Pricing</p>
-        <h2>Snapshot or pipeline. Your call.</h2>
+        <h2>PRICING</h2>
         <p class="section-lead">Export is the list. Creator is the desk. Most export buyers upgrade within a month.</p>
         <div class="pricing-grid">
           <article class="price-card price-card-export">
@@ -1593,8 +1608,8 @@
               <p class="price-amount">$20</p>
             </header>
             <ul class="price-includes">
-              <li>Up to 200 Questions</li>
-              <li>Search Volume on every keyword</li>
+              <li>Up to 200 questions</li>
+              <li>With Search Volume</li>
               <li>CSV download</li>
               <li>No subscription</li>
             </ul>
@@ -1614,8 +1629,14 @@
               <p class="price-credit-note">~1,500 questions with Search Volume</p>
             </div>
             <ul class="price-includes">
-              <li>Track articles and videos</li>
-              <li>Performance notes and recheck</li>
+              <li>Track your work</li>
+              <li>Discover questions with Scout</li>
+              <li>Page 1 rank checks on every row</li>
+              <li>Global and Local search volume</li>
+              <li>One-click search from any row</li>
+              <li>Upload your own keyword CSV</li>
+              <li>Recheck rankings after you publish</li>
+              <li>CSV export anytime</li>
             </ul>
             <a class="btn btn-primary price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Creator%20plan">Start tracking</a>
           </article>
@@ -1631,11 +1652,12 @@
                 <span class="price-credit-num">12,000</span>
                 <span class="price-credit-label">Credits</span>
               </div>
-              <p class="price-credit-note">~3,600 questions with Search Volume · 20% bonus</p>
+              <p class="price-credit-note">20% bonus</p>
             </div>
             <ul class="price-includes">
               <li>Everything in Creator</li>
-              <li>More rechecks and discovery headroom</li>
+              <li>2.4× monthly credits for Scout runs</li>
+              <li>More rank rechecks as your library grows</li>
             </ul>
             <a class="btn btn-neu price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Pro%20plan">Go Pro</a>
           </article>
@@ -1672,6 +1694,10 @@
           <details class="faq-item">
             <summary>I already have a keyword list. Can I upload it?</summary>
             <p>Yes. Upload your CSV and get volume plus gap status. No need to re-hunt phrases you already found.</p>
+          </details>
+          <details class="faq-item">
+            <summary>is this for kids?</summary>
+            <p>It's for adults. It's for experts who want to share their expertise and experience. Yes it's a cute dinosaur mascot. My 5-year-old son is super curious and keeps asking soooo many questions. And I just thought he would make the perfect mascot for this question finder. It just makes me smile every time I work on this software, to see him here.</p>
           </details>
         </div>
       </div>

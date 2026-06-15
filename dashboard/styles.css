@@ -155,6 +155,8 @@ body {
 .search-cell,
 .row-tools-cell { min-width: 0; white-space: nowrap; }
 
+.variant-a .is-mobile { display: none; }
+
 .row-tools {
   display: flex;
   flex-direction: column;
@@ -1150,23 +1152,6 @@ body {
   .jobs-auto-head { flex-direction: column; }
   .test-step { grid-template-columns: 20px 1fr; }
   .test-step-msg { grid-column: 2; }
-
-  /* Gaps toolbar — search, sort, export on one row */
-  .variant-a .toolbar {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: thin;
-  }
-  .variant-a .toolbar .toolbar-filters .search {
-    width: auto;
-    min-width: 100px;
-    flex: 1 1 100px;
-  }
-  .variant-a .toolbar .btn-sm,
-  .toolbar-sort {
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
 }
 
 .budget-line {
@@ -1232,16 +1217,19 @@ body {
 }
 
 /* --- Variant A: Broadcast Rail --- */
-.variant-a { display: flex; min-height: 100vh; }
-.variant-a .rail {
-  width: 240px;
-  flex-shrink: 0;
-  background: var(--surface-rail);
-  color: var(--text-primary);
-  border-right: 1px solid var(--border-hairline);
-  padding: 24px 20px;
-  display: flex;
-  flex-direction: column;
+.variant-a { display: flex; flex-direction: row; min-height: 100vh; }
+@media (min-width: 901px) {
+  .variant-a .rail {
+    order: -1;
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--surface-rail);
+    color: var(--text-primary);
+    border-right: 1px solid var(--border-hairline);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+  }
 }
 .variant-a .rail-brand {
   display: flex;
@@ -2844,9 +2832,11 @@ body.wf-busy [data-action] {
   transition: filter 0.35s var(--ease-out-quart);
 }
 
-body.wf-busy .variant-a .rail {
-  position: relative;
-  z-index: 10002;
+@media (min-width: 901px) {
+  body.wf-busy .variant-a .rail {
+    position: relative;
+    z-index: 10002;
+  }
 }
 
 tr.wf-row-vacating {
@@ -4051,5 +4041,183 @@ tr.wf-row-vacating td {
   }
   .optlab-settings-panel .optlab-content-add {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile dashboard: sidebar → fixed bottom nav (must load after desktop .rail rules) */
+@media (max-width: 900px) {
+  .variant-a {
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+  .variant-a .main {
+    order: 1;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+  .variant-a .rail {
+    order: 2;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    z-index: 1000;
+    width: 100%;
+    max-width: 100vw;
+    min-height: 56px;
+    height: auto;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px));
+    border-right: none;
+    border-top: 2px solid var(--ansaur-sage);
+    background: var(--surface-base);
+    box-shadow: 0 -8px 28px oklch(0.34 0.06 155 / 0.14);
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .variant-a .rail::-webkit-scrollbar {
+    display: none;
+  }
+  .variant-a .rail-brand,
+  .variant-a .rail-credits,
+  .variant-a .nav-group-label,
+  .variant-a .nav-divider {
+    display: none !important;
+  }
+  .variant-a .nav-item {
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-width: 4.75rem;
+    padding: 6px 10px;
+    margin: 0;
+    font-size: var(--type-2xs);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    border-radius: 6px;
+  }
+  .variant-a .nav-sub-item {
+    padding: 6px 10px;
+    font-size: var(--type-2xs);
+  }
+  .variant-a .nav-label {
+    flex: none;
+    white-space: nowrap;
+  }
+  .variant-a .nav-count {
+    min-width: 0;
+    padding: 1px 6px;
+    font-size: 0.65rem;
+  }
+  .variant-a .nav-item.nav-soon .soon-badge {
+    font-size: 0.55rem;
+    padding: 1px 4px;
+  }
+  body.wf-busy .variant-a .rail {
+    position: fixed;
+    z-index: 10002;
+  }
+
+  /* Toolbar — search, sort, export on one row */
+  .variant-a .toolbar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .variant-a .toolbar .toolbar-filters .search {
+    width: auto;
+    min-width: 100px;
+    flex: 1 1 100px;
+  }
+  .variant-a .toolbar .btn-sm,
+  .toolbar-sort {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Question rows: question / volume / search / actions */
+  .variant-a .data-table thead { display: none; }
+  .variant-a .data-table,
+  .variant-a .data-table tbody { display: block; width: 100%; }
+  .variant-a .data-table tbody tr.question-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  .variant-a .data-table tbody tr.question-row td {
+    display: block;
+    padding: 0;
+    border: none;
+  }
+  .variant-a .data-table tbody tr.question-row td.kw {
+    font-size: var(--type-sm);
+    line-height: 1.35;
+  }
+  .variant-a .is-desktop { display: none !important; }
+  .variant-a .is-mobile {
+    display: block;
+    width: 100%;
+  }
+  .variant-a .row-mobile-pack {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .variant-a .row-mobile-volumes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+  }
+  .variant-a .row-mobile-volumes .vol {
+    font-family: var(--font-mono);
+    font-size: var(--type-sm);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .variant-a .row-mobile-volumes .vol-label {
+    font-family: var(--font-ui);
+    font-size: var(--type-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .variant-a .row-mobile-volumes .rank-cell {
+    flex: 0 0 auto;
+  }
+  .variant-a .row-mobile-search .row-search-inline {
+    flex-wrap: wrap !important;
+    gap: 4px;
+    white-space: normal;
+  }
+  .variant-a .row-mobile-actions .row-tools-actions {
+    flex-wrap: wrap !important;
+    gap: 4px;
+    white-space: normal;
+  }
+  .variant-a .row-mobile-search .btn-search {
+    font-size: var(--type-xs);
+    padding: 4px 8px;
+  }
+  .variant-a .row-mobile-actions .row-tools-actions .btn-sm {
+    font-size: var(--type-sm);
+    padding: 4px 8px;
   }
 }
