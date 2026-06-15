@@ -508,51 +508,6 @@
       line-height: 1.55;
     }
 
-    /* ── Pipeline ── */
-    .pipeline {
-      display: grid;
-      gap: 0;
-      border: 1px solid var(--sage-muted);
-      border-radius: var(--r-md);
-      overflow: hidden;
-      background: var(--white);
-    }
-
-    @media (min-width: 720px) {
-      .pipeline { grid-template-columns: repeat(4, 1fr); }
-    }
-
-    .pipe-step {
-      padding: 1.5rem 1.35rem;
-      border-bottom: 1px solid var(--sage-muted);
-      position: relative;
-    }
-
-    @media (min-width: 720px) {
-      .pipe-step { border-bottom: none; border-right: 1px solid var(--sage-muted); }
-      .pipe-step:last-child { border-right: none; }
-    }
-
-    .pipe-num {
-      font-family: var(--mono);
-      font-size: .75rem;
-      color: var(--scale-red);
-      font-weight: 500;
-      margin-bottom: .65rem;
-    }
-
-    .pipe-step h3 {
-      font-size: .95rem;
-      font-weight: 700;
-      margin-bottom: .45rem;
-    }
-
-    .pipe-step p {
-      font-size: .85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
     /* ── Story ── */
     .story {
       max-width: 42rem;
@@ -919,6 +874,392 @@
     }
     .product-shot-caption a:hover { color: var(--moss); }
 
+    /* ── How it works: manual vs Ansaur ── */
+    #how h2 { max-width: 26ch; }
+
+    .how-compare {
+      display: grid;
+      gap: clamp(2rem, 4vw, 2.75rem);
+    }
+
+    @media (min-width: 900px) {
+      .how-compare {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+        gap: clamp(1.75rem, 3vw, 2.5rem);
+        align-items: start;
+      }
+    }
+
+    .how-col-label {
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin-bottom: 1.15rem;
+    }
+
+    .how-col--manual .how-col-label { color: var(--text-muted); }
+    .how-col--ansaur .how-col-label { color: var(--moss); }
+
+    .how-manual-list {
+      list-style: none;
+      display: grid;
+      position: relative;
+      padding-left: 1.85rem;
+    }
+
+    .how-manual-list::before {
+      content: "";
+      position: absolute;
+      left: .45rem;
+      top: .65rem;
+      bottom: .65rem;
+      width: 2px;
+      background: var(--sage-muted);
+    }
+
+    .how-manual-item {
+      position: relative;
+      padding: .7rem 0 .7rem .35rem;
+    }
+
+    .how-manual-item::before {
+      content: "";
+      position: absolute;
+      left: -1.4rem;
+      top: 1rem;
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--sage-muted);
+    }
+
+    .how-manual-num {
+      display: block;
+      font-family: var(--mono);
+      font-size: .62rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: .04em;
+      margin-bottom: .2rem;
+    }
+
+    .how-manual-item h3 {
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: .2rem;
+      line-height: 1.25;
+    }
+
+    .how-manual-item p {
+      font-size: .8rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      max-width: 36ch;
+    }
+
+    .how-col--ansaur {
+      padding: 1.15rem 1.1rem 1.35rem;
+      background: var(--sage-soft);
+      border: 1px solid var(--sage-muted);
+      border-radius: var(--r-md);
+    }
+
+    @media (min-width: 900px) {
+      .how-col--ansaur {
+        border: 3px solid var(--moss-deep);
+        box-shadow: var(--shadow-neu);
+        padding: 1.35rem 1.25rem 1.5rem;
+      }
+    }
+
+    .how-ansaur-list {
+      list-style: none;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .how-ansaur-item {
+      display: grid;
+      gap: .75rem;
+    }
+
+    .how-ansaur-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: .18rem .42rem;
+      border-radius: var(--r-sm);
+      background: var(--white);
+      color: var(--moss);
+      border: 1px solid var(--sage-muted);
+      margin-bottom: .3rem;
+    }
+
+    .how-ansaur-item h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: .2rem;
+      line-height: 1.25;
+    }
+
+    .how-ansaur-item p {
+      font-size: .82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .works-mock {
+      border: 3px solid var(--moss-deep);
+      border-radius: var(--r-md);
+      background: var(--white);
+      box-shadow: var(--shadow-neu);
+      overflow: hidden;
+      font-size: .78rem;
+      line-height: 1.35;
+    }
+
+    .mock-label {
+      display: block;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .35rem;
+    }
+
+    .mock-field {
+      display: block;
+      width: 100%;
+      padding: .55rem .65rem;
+      border: 2px solid var(--sage-muted);
+      border-radius: var(--r-sm);
+      background: var(--sage-soft);
+      color: var(--moss-deep);
+      font-family: var(--font);
+      font-size: .82rem;
+    }
+
+    .mock-field--mono {
+      font-family: var(--mono);
+      font-size: .75rem;
+    }
+
+    .mock-niche {
+      padding: 1rem 1.1rem 1.15rem;
+    }
+
+    .mock-niche .mock-field + .mock-label {
+      margin-top: .75rem;
+    }
+
+    .mock-niche-btn {
+      display: inline-block;
+      margin-top: .85rem;
+      padding: .45rem .75rem;
+      background: var(--moss-deep);
+      color: var(--white);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      border-radius: var(--r-sm);
+    }
+
+    .mock-table-head,
+    .mock-table-row {
+      display: grid;
+      grid-template-columns: 1fr 3.2rem 3.2rem 3.5rem;
+      gap: .5rem;
+      align-items: center;
+      padding: .45rem .75rem;
+    }
+
+    .mock-sort-bar {
+      padding: .4rem .75rem;
+      font-family: var(--mono);
+      font-size: .62rem;
+      color: var(--moss);
+      background: color-mix(in srgb, var(--sage-soft) 70%, var(--white));
+      border-bottom: 1px solid var(--sage-muted);
+    }
+
+    .mock-table-head {
+      font-family: var(--mono);
+      font-size: .58rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: var(--sage-soft);
+      border-bottom: 1px solid var(--sage-muted);
+    }
+
+    .mock-table-row {
+      border-bottom: 1px solid var(--sage-muted);
+      font-size: .74rem;
+    }
+
+    .mock-table-row:last-child { border-bottom: none; }
+
+    .mock-kw {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mock-vol {
+      font-family: var(--mono);
+      font-size: .68rem;
+      font-weight: 500;
+      color: var(--moss-deep);
+      text-align: right;
+    }
+
+    .mock-rank {
+      display: inline-flex;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      border: 1px solid var(--sage-muted);
+      font-size: .58rem;
+      font-weight: 600;
+    }
+
+    .mock-rank span {
+      padding: .2rem .35rem;
+    }
+
+    .mock-rank-yes {
+      background: var(--moss);
+      color: var(--white);
+    }
+
+    .mock-rank-no {
+      background: var(--white);
+      color: var(--text-muted);
+    }
+
+    .mock-rank-pending .mock-rank-no,
+    .mock-rank-pending .mock-rank-yes {
+      background: var(--sage-soft);
+      color: var(--text-muted);
+    }
+
+    .mock-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      padding: .55rem .75rem;
+      background: var(--sage-soft);
+      border-bottom: 1px solid var(--sage-muted);
+    }
+
+    .mock-search {
+      flex: 1 1 8rem;
+      min-width: 0;
+      padding: .35rem .55rem;
+      border: 1px solid var(--sage-muted);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      font-family: var(--mono);
+      font-size: .65rem;
+      color: var(--moss);
+    }
+
+    .mock-pill {
+      padding: .3rem .5rem;
+      border: 1px solid var(--sage-muted);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      font-size: .62rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .mock-pill--on {
+      background: var(--moss-deep);
+      border-color: var(--moss-deep);
+      color: var(--white);
+    }
+
+    .mock-track-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .5rem;
+      align-items: center;
+      padding: .55rem .75rem;
+      border-bottom: 1px solid var(--sage-muted);
+    }
+
+    .mock-track-row:last-child { border-bottom: none; }
+
+    .mock-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem;
+      justify-content: flex-end;
+    }
+
+    .mock-btn {
+      padding: .22rem .4rem;
+      border: 1px solid var(--sage-muted);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      font-size: .58rem;
+      font-weight: 600;
+      color: var(--moss);
+      white-space: nowrap;
+    }
+
+    .mock-btn--on {
+      background: var(--moss);
+      border-color: var(--moss);
+      color: var(--white);
+    }
+
+    .mock-nav {
+      display: flex;
+      gap: .35rem;
+      padding: .5rem .75rem .65rem;
+      border-top: 1px solid var(--sage-muted);
+      background: color-mix(in srgb, var(--sage-soft) 60%, var(--white));
+    }
+
+    .mock-nav-item {
+      font-size: .6rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: .25rem .45rem;
+      border-radius: 999px;
+      background: var(--white);
+      border: 1px solid var(--sage-muted);
+    }
+
+    .mock-nav-item strong {
+      font-family: var(--mono);
+      font-weight: 500;
+      color: var(--moss-deep);
+      margin-left: .2rem;
+    }
+
+    .mock-nav-item--active {
+      background: var(--moss-deep);
+      border-color: var(--moss-deep);
+      color: var(--white);
+    }
+
+    .mock-nav-item--active strong { color: var(--sage); }
+
     /* ── Footer CTA ── */
     .footer-cta {
       text-align: center;
@@ -1148,6 +1489,146 @@
       </div>
     </section>
 
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="section-inner">
+        <p class="section-label">How it works</p>
+        <h2 id="how-title">Hours of manual research. Or three clicks with Ansaur.</h2>
+        <p class="section-lead">Finding the right questions means Google rabbit holes, spreadsheet dumps, and memory checks. Ansaur runs that research and hands you a ranked queue.</p>
+        <div class="how-compare">
+          <div class="how-col how-col--manual">
+            <p class="how-col-label">Without Ansaur</p>
+            <ol class="how-manual-list">
+              <li class="how-manual-item">
+                <span class="how-manual-num">01</span>
+                <h3>Brainstorm seed topics</h3>
+                <p>Start with a vague niche idea and a blank doc. No list yet.</p>
+              </li>
+              <li class="how-manual-item">
+                <span class="how-manual-num">02</span>
+                <h3>Hunt in Google</h3>
+                <p>Click through People Also Ask, autocomplete, and forum threads. Still no clean list of what people actually type.</p>
+              </li>
+              <li class="how-manual-item">
+                <span class="how-manual-num">03</span>
+                <h3>Build a spreadsheet</h3>
+                <p>Copy questions into a sheet. Dedupe by hand. Add columns you hope to fill later.</p>
+              </li>
+              <li class="how-manual-item">
+                <span class="how-manual-num">04</span>
+                <h3>Check your coverage</h3>
+                <p>Google your site or channel plus each keyword. Or trust memory from two years ago.</p>
+              </li>
+              <li class="how-manual-item">
+                <span class="how-manual-num">05</span>
+                <h3>Estimate volume</h3>
+                <p>Guess from autocomplete, or open Ahrefs for the fifth tool this week.</p>
+              </li>
+              <li class="how-manual-item">
+                <span class="how-manual-num">06</span>
+                <h3>Pick what to make next</h3>
+                <p>Sort by gut feel because nothing shows rank status and real volume side by side.</p>
+              </li>
+              <li class="how-manual-item">
+                <span class="how-manual-num">07</span>
+                <h3>Watch the niche</h3>
+                <p>Screenshot competitor titles and hope you notice the gap before someone else films it.</p>
+              </li>
+            </ol>
+          </div>
+          <div class="how-col how-col--ansaur">
+            <p class="how-col-label">With Ansaur</p>
+            <ol class="how-ansaur-list">
+              <li class="how-ansaur-item">
+                <div>
+                  <span class="how-ansaur-badge">One form</span>
+                  <h3>Tell us your niche</h3>
+                  <p>Topic plus your site or channel. Click once.</p>
+                </div>
+                <div class="works-mock mock-niche" aria-hidden="true">
+                  <span class="mock-label">Your expertise or niche</span>
+                  <span class="mock-field">Google Sheets tutorials for beginners</span>
+                  <span class="mock-label">Your site or channel</span>
+                  <span class="mock-field mock-field--mono">bettersheets.co</span>
+                  <span class="mock-niche-btn">Get questions</span>
+                </div>
+              </li>
+              <li class="how-ansaur-item">
+                <div>
+                  <span class="how-ansaur-badge">Done for you</span>
+                  <h3>Get a ranked question list</h3>
+                  <p>Real questions people search, with volume and rank status already filled in.</p>
+                </div>
+                <div class="works-mock" aria-hidden="true">
+                  <div class="mock-sort-bar">Global volume ↓ · 47 questions · 186k/mo total</div>
+                  <div class="mock-table-head">
+                    <span>Question</span>
+                    <span>Global</span>
+                    <span>US</span>
+                    <span>Rank</span>
+                  </div>
+                  <div class="mock-table-row">
+                    <span class="mock-kw">how to vlookup in google sheets</span>
+                    <span class="mock-vol">22k</span>
+                    <span class="mock-vol">14k</span>
+                    <span class="mock-rank mock-rank-pending"><span class="mock-rank-yes">Pg1</span><span class="mock-rank-no">Not</span></span>
+                  </div>
+                  <div class="mock-table-row">
+                    <span class="mock-kw">why is my formula returning #n/a</span>
+                    <span class="mock-vol">8.4k</span>
+                    <span class="mock-vol">5.1k</span>
+                    <span class="mock-rank"><span class="mock-rank-yes">Pg1</span><span class="mock-rank-no">Not</span></span>
+                  </div>
+                  <div class="mock-table-row">
+                    <span class="mock-kw">can google sheets send email alerts</span>
+                    <span class="mock-vol">3.2k</span>
+                    <span class="mock-vol">2.4k</span>
+                    <span class="mock-rank"><span class="mock-rank-yes">Pg1</span><span class="mock-rank-no">Not</span></span>
+                  </div>
+                </div>
+              </li>
+              <li class="how-ansaur-item">
+                <div>
+                  <span class="how-ansaur-badge">Few clicks</span>
+                  <h3>Search, filter, and track</h3>
+                  <p>Film it, write it, or mark first page. Filter by what is left to make.</p>
+                </div>
+                <div class="works-mock" aria-hidden="true">
+                  <div class="mock-toolbar">
+                    <span class="mock-search">vlookup</span>
+                    <span class="mock-pill mock-pill--on">Questions</span>
+                    <span class="mock-pill">Filmed</span>
+                    <span class="mock-pill">Written</span>
+                  </div>
+                  <div class="mock-track-row">
+                    <span class="mock-kw">how to vlookup in google sheets</span>
+                    <div class="mock-actions">
+                      <span class="mock-btn mock-btn--on">Film it</span>
+                      <span class="mock-btn">Write</span>
+                      <span class="mock-btn">Skip</span>
+                    </div>
+                  </div>
+                  <div class="mock-track-row">
+                    <span class="mock-kw">google sheets arrayformula examples</span>
+                    <div class="mock-actions">
+                      <span class="mock-btn">Film it</span>
+                      <span class="mock-btn mock-btn--on">Write</span>
+                      <span class="mock-btn">Skip</span>
+                    </div>
+                  </div>
+                  <div class="mock-nav">
+                    <span class="mock-nav-item mock-nav-item--active">Questions<strong>47</strong></span>
+                    <span class="mock-nav-item">Filmed<strong>12</strong></span>
+                    <span class="mock-nav-item">Written<strong>8</strong></span>
+                    <span class="mock-nav-item">First Page<strong>19</strong></span>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section section-sage" id="uses">
       <div class="section-inner">
         <h2>How to use the Questions</h2>
@@ -1188,35 +1669,6 @@
           <article class="pain-item">
             <h3>AI makes up nonsense questions</h3>
             <p>AI generates absolute hallucinations. It is not real people asking real questions. It is some super mid kind of b.s.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="how">
-      <div class="section-inner">
-        <h2>You know the questions exist. Finding them is the job.</h2>
-        <p class="section-lead">Clicking through PAA and hoping Google is truthful? Exporting a keyword wheel into a sheet you never open again? Manually searching whether you already made that video?</p>
-        <div class="pipeline">
-          <article class="pipe-step">
-            <p class="pipe-num">01</p>
-            <h3>Hunting in Google</h3>
-            <p>People Also Ask rabbit holes. Autocomplete guesses. Still no clear list of what people actually type.</p>
-          </article>
-          <article class="pipe-step">
-            <p class="pipe-num">02</p>
-            <h3>Checking your coverage</h3>
-            <p>Googling your channel or blog plus the keyword. Or trusting your memory from two years ago.</p>
-          </article>
-          <article class="pipe-step">
-            <p class="pipe-num">03</p>
-            <h3>Picking what to make next</h3>
-            <p>Sorting a messy list by gut feel because nothing shows rank status or real volume side by side.</p>
-          </article>
-          <article class="pipe-step">
-            <p class="pipe-num">04</p>
-            <h3>Watching the niche</h3>
-            <p>Checking who posted what, screenshotting titles, hoping you notice the gap before someone else films it.</p>
           </article>
         </div>
       </div>
