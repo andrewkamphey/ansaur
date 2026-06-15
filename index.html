@@ -813,13 +813,19 @@
     }
     @media (min-width: 900px) {
       .product-preview .section-inner {
-        grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: minmax(0, 18rem) 1fr;
         align-items: center;
         gap: 2.5rem;
       }
     }
     .product-preview-copy h2 { max-width: none; }
-    .product-preview-visual { margin: 0; }
+    .product-preview-visual {
+      margin: 0;
+      max-width: 18rem;
+    }
+    @media (min-width: 900px) {
+      .product-preview-visual { justify-self: end; }
+    }
     .product-shot {
       display: block;
       border: 3px solid var(--moss-deep);
@@ -838,7 +844,9 @@
     }
     .product-shot img {
       width: 100%;
-      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: left top;
       display: block;
     }
     .product-shot-caption {
@@ -1139,7 +1147,7 @@
             <p>Within months, ad revenue climbed from <strong>$100 to over $1,000/month</strong>. Same channel. Same expertise. Different keyword strategy, built on real search data.</p>
           </div>
           <blockquote>
-            I di need more videos. I needed the right videos, for questions people actually search.
+            I didn't need more videos. I needed the right videos, for questions people actually search.
             <cite>Andrew, Better Sheets</cite>
           </blockquote>
         </div>
@@ -1226,7 +1234,7 @@
           </details>
           <details class="faq-item">
             <summary>What is a credit?</summary>
-            <p>One credit is one tenth of a cent ($0.001) of research spend. Creator includes 5,000 credits per month (~$5 of API at cost). Rank check: 1 credit per keyword. Volume fill: 75 credits per 100 keywords. Discovery: 10 credits per prefix × seed. PAA harvest: 2 credits per seed. On a typical mix, 5,000 credits covers roughly 1,500 fully researched questions or 6,500 volume-only lookups. Need more? Top up $10 for 2,000 credits.</p>
+            <p>Credits are what you spend when you run research in Ansaur: checking ranks, discovering questions, filling search volume, and similar actions. Not everything costs credits, but many do. Your plan includes a monthly allowance, and you will see the cost before you run something.</p>
           </details>
           <details class="faq-item">
             <summary>Do I need API keys or YouTube login?</summary>

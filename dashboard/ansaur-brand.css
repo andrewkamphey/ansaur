@@ -1,0 +1,104 @@
+/* Ansaur brand tokens — sage + moss greens, scale red, white ground */
+
+:root {
+  /* Core palette */
+  --ansaur-sage: oklch(0.80 0.055 155);       /* #A8CDB4 — primary green, mascot body */
+  --ansaur-moss: oklch(0.46 0.075 155);       /* #3F6B4E — secondary green, spots & depth */
+  --ansaur-red: oklch(0.58 0.245 27);         /* #E63329 — bright red, scales & CTAs */
+  --ansaur-white: oklch(1 0 0);               /* #FFFFFF — page background */
+
+  /* Tints & shades */
+  --ansaur-sage-soft: oklch(0.94 0.025 155);  /* hover rows, subtle fills */
+  --ansaur-sage-muted: oklch(0.88 0.035 155); /* borders, disabled chips */
+  --ansaur-moss-deep: oklch(0.34 0.06 155);   /* dark chrome, badges */
+  --ansaur-red-deep: oklch(0.48 0.22 27);     /* pressed buttons, emphasis */
+  --ansaur-red-soft: oklch(0.94 0.04 27);     /* alerts, active job bars */
+
+  /* Semantic aliases */
+  --brand-green-primary: var(--ansaur-sage);
+  --brand-green-secondary: var(--ansaur-moss);
+  --brand-accent: var(--ansaur-red);
+  --brand-bg: var(--ansaur-white);
+
+  /* Surfaces */
+  --surface-base: var(--ansaur-white);
+  --surface-raised: var(--ansaur-sage-soft);
+  --surface-inset: oklch(0.97 0.012 155);
+  --surface-rail: var(--ansaur-white);
+  --surface-accent: var(--ansaur-red-soft);
+
+  /* Text */
+  --text-primary: oklch(0.25 0.03 155);
+  --text-muted: oklch(0.50 0.04 155);
+  --text-on-rail: var(--ansaur-white);
+  --text-on-rail-muted: oklch(0.82 0.04 155);
+  --text-on-accent: var(--ansaur-white);
+  --text-on-sage: var(--ansaur-moss-deep);
+
+  /* Interactive */
+  --accent-primary: var(--ansaur-red);
+  --accent-primary-hover: var(--ansaur-red-deep);
+  --accent-secondary: var(--ansaur-moss);
+  --accent-secondary-hover: var(--ansaur-moss-deep);
+  --accent-tint: var(--ansaur-red-soft);
+  --accent-green-tint: var(--ansaur-sage-soft);
+
+  /* Borders & dividers */
+  --border-hairline: var(--ansaur-sage-muted);
+  --border-strong: var(--ansaur-moss);
+
+  /* Signals (data UI) */
+  --signal-rank-yes: var(--ansaur-red);
+  --signal-rank-no: var(--ansaur-sage-muted);
+  --signal-check: oklch(0.78 0.12 95);
+  --signal-success: var(--ansaur-moss);
+
+  /* Neubrutalism stroke — moss instead of black */
+  --nb-stroke: var(--ansaur-moss-deep);
+  --nb-shadow: 4px 4px 0 var(--nb-stroke);
+  --nb-shadow-lg: 6px 6px 0 var(--nb-stroke);
+  --nb-shadow-press: 2px 2px 0 var(--nb-stroke);
+  --nb-yellow: oklch(0.92 0.12 95);
+  --input-inset: oklch(0.92 0.015 155);
+
+  /* Legacy aliases (styles.css compatibility) */
+  --accent-red: var(--ansaur-red);
+  --accent-red-deep: var(--ansaur-red-deep);
+  --accent-red-soft: var(--ansaur-red-soft);
+  --danger: var(--ansaur-red-deep);
+  --text-faint: oklch(0.62 0.035 155);
+  --border: var(--border-hairline);
+  --rail-divider: var(--ansaur-sage-muted);
+  --rail-chrome: var(--ansaur-sage-soft);
+
+  /* Typography */
+  --font-wordmark: "Fredoka", system-ui, sans-serif;
+  --font-display: "DM Sans", system-ui, sans-serif;
+  --font-ui: "DM Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --display-tracking: 0.02em;
+
+  /* Type scale — 16px base (+2px vs prior 14px default) */
+  --type-2xs: 0.6875rem;  /* 11px */
+  --type-xs: 0.75rem;     /* 12px */
+  --type-sm: 0.875rem;    /* 14px */
+  --type-md: 0.9375rem;   /* 15px */
+  --type-base: 1rem;      /* 16px */
+  --type-lg: 1.125rem;    /* 18px */
+  --type-xl: 1.25rem;     /* 20px */
+  --type-2xl: 1.375rem;   /* 22px */
+  --type-3xl: 1.5rem;     /* 24px */
+  --type-4xl: 1.875rem;   /* 30px */
+  --type-5xl: 2.25rem;    /* 36px */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+
+  /* App chrome */
+  --app-mascot-size: 72px;
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}

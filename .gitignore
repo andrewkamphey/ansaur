@@ -9,6 +9,7 @@
 !/assets/
 !/assets/**
 !/styles.css
+!/ansaur-brand.css
 # Static site assets (symlinked from root for GitHub Pages)
 !/dashboard/
 /dashboard/*
@@ -17,6 +18,7 @@
 !/dashboard/assets/ansaur-mascot-white.png
 !/dashboard/assets/example-dashboard-preview.png
 !/dashboard/styles.css
+!/dashboard/ansaur-brand.css
 
 
 # ORIGINAL
