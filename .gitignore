@@ -4,13 +4,19 @@
 # Keep only root index.html and this file
 !/index.html
 !/.gitignore
-# get example png
+!/example/
+!/example/**
+!/assets/
+!/assets/**
+!/styles.css
+# Static site assets (symlinked from root for GitHub Pages)
 !/dashboard/
 /dashboard/*
-!/dashboard/example/
-!/dashboard/example/**
 !/dashboard/assets/
+!/dashboard/assets/ansaur-a.svg
+!/dashboard/assets/ansaur-mascot-white.png
 !/dashboard/assets/example-dashboard-preview.png
+!/dashboard/styles.css
 
 
 # ORIGINAL
