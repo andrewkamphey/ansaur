@@ -115,7 +115,12 @@ body {
   font-weight: 600;
   letter-spacing: 0.04em;
 }
-.badge-ranks { background: var(--signal-rank-yes); color: var(--text-on-rail); }
+.badge-ranks {
+  background: var(--signal-rank-yes);
+  color: var(--text-on-rail);
+  padding-inline: 8px;
+  letter-spacing: 0.02em;
+}
 .badge-on-page {
   background: var(--ansaur-moss);
   color: var(--text-on-rail);
@@ -2286,17 +2291,22 @@ body {
 
 .jobs-command-body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 300px);
+  grid-template-columns: 1fr;
   gap: 24px;
   align-items: start;
 }
-.jobs-command-primary { min-width: 0; }
+.jobs-command-primary {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
 
 .jobs-scout-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
-  margin-bottom: 28px;
+  margin-bottom: 0;
 }
 .jobs-run-grid {
   display: grid;
@@ -2402,7 +2412,7 @@ body {
 }
 .jobs-detail-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
   padding: 8px 0 4px;
 }
@@ -2472,11 +2482,11 @@ body {
 }
 .jobs-auto-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 .jobs-patrol-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
 }
 .jobs-zone-probe {
   background: var(--ansaur-sage-soft);
@@ -2653,8 +2663,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  position: sticky;
-  top: 12px;
+  position: static;
 }
 .jobs-rail-panel {
   padding: 16px;
