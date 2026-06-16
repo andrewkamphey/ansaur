@@ -97,6 +97,13 @@
   /* App chrome */
   --app-mascot-size: 72px;
 
+  /* Chunky button tokens (neubrut — DESIGN.md) */
+  --btn-chunky-border: 3px solid var(--nb-stroke);
+  --btn-chunky-radius: 4px;
+  --btn-chunky-shadow: var(--nb-shadow);
+  --btn-chunky-shadow-hover: var(--nb-shadow-lg);
+  --btn-chunky-shadow-press: var(--nb-shadow-press);
+
   /* Motion */
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);

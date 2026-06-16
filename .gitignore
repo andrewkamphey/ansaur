@@ -7,7 +7,12 @@
 !/example/
 !/example/**
 !/assets/
-!/assets/**
+/assets/*
+!/assets/ansaur-a.svg
+!/assets/ansaur-mascot.png
+!/assets/example-dashboard-screenshot.png
+!/assets/icons/
+!/assets/icons/*
 !/styles.css
 !/ansaur-brand.css
 # Static site assets (symlinked from root for GitHub Pages)
@@ -16,9 +21,9 @@
 !/dashboard/example/
 !/dashboard/example/**
 !/dashboard/assets/
+/dashboard/assets/*
 !/dashboard/assets/ansaur-a.svg
-!/dashboard/assets/ansaur-mascot-white.png
-!/dashboard/assets/example-dashboard-preview.png
+!/dashboard/assets/example-dashboard-screenshot.png
 !/dashboard/styles.css
 !/dashboard/ansaur-brand.css
 
@@ -29,6 +34,7 @@ data/
 credentials/
 imports/*.csv
 __pycache__/
+.venv-sprites/
 dashboard/fonts/*.woff2
 dashboard/fonts/*.woff
 dashboard/fonts/*.ttf

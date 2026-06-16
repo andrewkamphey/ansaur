@@ -3,12 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Real questions. Real Search. Real Topical Authority.</title>
-  <meta name="description" content="Ansaur researches the questions people search in your niche with real keyword data, then shows which ones you do not rank for yet." />
+  <title>Real questions. Real searches. Become the go-to answer in your niche.</title>
+  <meta name="description" content="Ansaur researches the questions people search in your niche, with monthly search counts, then shows which ones you have not answered yet." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Real questions. Real searches. Become the go-to answer in your niche." />
+  <meta property="og:description" content="Ansaur researches the questions people search in your niche, with monthly search counts, then shows which ones you have not answered yet." />
+  <meta property="og:url" content="https://ansaur.com/" />
+  <meta property="og:image" content="https://ansaur.com/assets/example-dashboard-screenshot.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Real questions. Real searches. Become the go-to answer in your niche." />
+  <meta name="twitter:description" content="Ansaur researches the questions people search in your niche, with monthly search counts, then shows which ones you have not answered yet." />
+  <meta name="twitter:image" content="https://ansaur.com/assets/example-dashboard-screenshot.png" />
   <link rel="icon" href="/assets/ansaur-a.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,500&family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fredoka:wght@600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
       --sage: #A8CDB4;
@@ -21,7 +30,8 @@
       --scale-red-soft: #FCEAE9;
       --white: #FEFEFE;
       --text: #2E4034;
-      --text-muted: #6B7F72;
+      --text-muted: #5F7266;
+      --text-subtle: #6B7F72;
       --signal: #D4A82A;
       --r-sm: 4px;
       --r-md: 6px;
@@ -29,6 +39,27 @@
       --shadow-neu-lg: 6px 6px 0 var(--moss-deep);
       --font: "DM Sans", system-ui, sans-serif;
       --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --text-display: clamp(2.35rem, 5.5vw, 3.65rem);
+      --text-title-lg: clamp(1.65rem, 3.5vw, 2.35rem);
+      --text-title: 1.0625rem;
+      --text-lead: clamp(1.05rem, 2vw, 1.2rem);
+      --text-body: 1rem;
+      --text-body-sm: 0.9375rem;
+      --text-label: 0.6875rem;
+      --text-mono-data: 0.8125rem;
+      --text-price: 2.25rem;
+    }
+
+    .label,
+    .section-label,
+    .hero-kicker,
+    .price-kicker {
+      font-family: var(--font);
+      font-size: var(--text-label);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.2;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,7 +71,7 @@
 
     body {
       font-family: var(--font);
-      font-size: 16px;
+      font-size: 1rem;
       line-height: 1.55;
       color: var(--text);
       background: var(--white);
@@ -51,10 +82,15 @@
     a { color: var(--moss); text-decoration-thickness: 1px; text-underline-offset: 3px; }
     a:hover { color: var(--scale-red); }
 
+    :focus { outline: none; }
+    :focus-visible {
+      outline: 2px solid var(--scale-red);
+      outline-offset: 2px;
+    }
+
     .skip { position: absolute; left: -9999px; }
     .skip:focus { left: 1rem; top: 1rem; z-index: 99; background: var(--white); padding: .5rem 1rem; }
 
-    /* ── Nav ── */
     .site-nav {
       position: sticky;
       top: 0;
@@ -67,23 +103,24 @@
       --brand-mascot-width: 72px;
       --mascot-reveal: 0;
       padding: var(--nav-pad-y) clamp(1.25rem, 4vw, 3rem);
-      background: color-mix(in srgb, var(--white) 92%, var(--sage-soft));
+      background: var(--white);
       border-bottom: 1px solid var(--sage-muted);
-      backdrop-filter: blur(8px);
       overflow: hidden;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: .35rem;
+      gap: 0;
       text-decoration: none;
       align-self: stretch;
       position: relative;
-      padding-right: calc(var(--brand-mascot-width) + .35rem);
+      flex-shrink: 0;
+      padding-right: calc(var(--brand-mascot-width) + .1rem);
     }
 
     .brand-wordmark {
+      position: relative;
       font-family: "Fredoka", var(--font), system-ui, sans-serif;
       font-weight: 600;
       font-size: 1.35rem;
@@ -91,21 +128,43 @@
       line-height: 1.1;
     }
 
-    .brand-name { color: var(--moss); }
-    .brand-tld { color: var(--sage); font-weight: 500; }
+    .brand-name { color: var(--moss); font-weight: 700; }
+    .brand-tld { color: var(--text-muted); font-weight: 500; }
 
     .brand-mascot {
       position: absolute;
       left: 100%;
-      bottom: calc(-1 * var(--nav-pad-y) - 1px);
+      bottom: calc(-1 * var(--nav-pad-y) - 11px);
       width: var(--brand-mascot-width);
       height: auto;
       object-fit: contain;
       object-position: bottom center;
-      margin: 0 0 0 .35rem;
+      margin: 0 0 0 .1rem;
       display: block;
       transform: translateY(calc((1 - var(--mascot-reveal)) * 110%));
       will-change: transform;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      padding: 0;
+      border: 1px solid var(--sage-muted);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      color: var(--moss-deep);
+      font-family: var(--font);
+      font-size: var(--text-body-sm);
+      font-weight: 600;
+      cursor: pointer;
     }
 
     .nav-links {
@@ -113,11 +172,15 @@
       align-items: center;
       gap: clamp(1rem, 2.5vw, 1.75rem);
       list-style: none;
-      font-size: .9rem;
+      font-size: var(--text-body-sm);
       font-weight: 500;
     }
 
-    .nav-links a { color: var(--text-muted); text-decoration: none; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: var(--r-sm);
+    }
     .nav-links a:hover { color: var(--scale-red); }
 
     /* ── Buttons ── */
@@ -126,9 +189,10 @@
       align-items: center;
       justify-content: center;
       gap: .4rem;
+      min-height: 2.75rem;
       padding: .65rem 1.15rem;
       font-family: var(--font);
-      font-size: .9rem;
+      font-size: var(--text-body-sm);
       font-weight: 600;
       border-radius: var(--r-sm);
       border: none;
@@ -197,20 +261,16 @@
     }
 
     .hero-kicker {
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
       color: var(--moss);
       margin-bottom: 1rem;
     }
 
     .hero h1 {
-      font-size: clamp(2.35rem, 5.5vw, 3.65rem);
+      font-size: var(--text-display);
       font-weight: 700;
       line-height: 1.08;
       letter-spacing: -.02em;
-      max-width: 14ch;
+      max-width: 20ch;
       margin-bottom: 1.25rem;
     }
 
@@ -220,7 +280,7 @@
     }
 
     .hero-lead {
-      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      font-size: var(--text-lead);
       color: var(--text-muted);
       max-width: 52ch;
       margin-bottom: 1.75rem;
@@ -233,6 +293,98 @@
       flex-wrap: wrap;
       gap: .75rem;
     }
+
+    .buy-modal[hidden] {
+      display: none;
+    }
+
+    .buy-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .buy-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: color-mix(in srgb, var(--moss-deep) 42%, transparent);
+    }
+
+    .buy-modal-panel {
+      position: relative;
+      width: min(100%, 24rem);
+      padding: 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--sage-muted);
+      border-radius: var(--r-md);
+      box-shadow: var(--shadow-neu-lg);
+    }
+
+    .buy-modal-close {
+      position: absolute;
+      top: .65rem;
+      right: .75rem;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: .15rem .35rem;
+    }
+
+    .buy-modal-close:hover {
+      color: var(--text);
+    }
+
+    .buy-modal-title {
+      font-size: var(--text-title);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      padding-right: 1.5rem;
+    }
+
+    .buy-modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .buy-modal-form label {
+      font-size: var(--text-body-sm);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .buy-modal-form input[type="email"] {
+      min-height: 2.75rem;
+      padding: .65rem 1rem;
+      font-family: var(--font);
+      font-size: var(--text-body-sm);
+      border: 1px solid var(--sage-muted);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      color: var(--text);
+    }
+
+    .buy-modal-form input[type="email"]:focus-visible {
+      border-color: var(--moss);
+      outline: 2px solid color-mix(in srgb, var(--moss) 35%, transparent);
+      outline-offset: 1px;
+    }
+
+    .buy-modal-status {
+      margin-top: .75rem;
+      font-size: var(--text-body-sm);
+      line-height: 1.45;
+    }
+
+    .buy-modal-status.is-success { color: var(--moss); font-weight: 600; }
+    .buy-modal-status.is-error { color: var(--scale-red-deep); }
 
     .hero-visual {
       position: relative;
@@ -286,7 +438,7 @@
       padding: .34rem .65rem .34rem .5rem;
       border-radius: 999px;
       font-family: var(--mono);
-      font-size: clamp(.65rem, 2.08vw, .78rem);
+      font-size: clamp(0.65rem, 2.08vw, var(--text-mono-data));
       line-height: 1.25;
       white-space: nowrap;
       transform: rotate(var(--qrot, 0deg)) translateY(6px) scale(.96);
@@ -379,7 +531,7 @@
       }
 
       .hero-lead {
-        font-size: .95rem;
+        font-size: var(--text-body);
         line-height: 1.45;
         margin-bottom: .9rem;
       }
@@ -390,7 +542,7 @@
 
       .hero-actions .btn {
         padding: .55rem .95rem;
-        font-size: .85rem;
+        font-size: var(--text-body-sm);
       }
 
       .hero-visual {
@@ -422,25 +574,13 @@
 
     .section-sage { background: var(--sage-soft); }
 
-    .section-moss {
-      background: var(--moss-deep);
-      color: color-mix(in srgb, var(--white) 92%, var(--sage));
-    }
-    .section-moss a { color: var(--sage); }
-    .section-moss .text-muted { color: color-mix(in srgb, var(--white) 65%, var(--sage)); }
-
     .section-label {
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
       color: var(--moss);
       margin-bottom: .75rem;
     }
-    .section-moss .section-label { color: var(--sage); }
 
     .section h2 {
-      font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+      font-size: var(--text-title-lg);
       font-weight: 700;
       line-height: 1.15;
       letter-spacing: -.015em;
@@ -449,12 +589,12 @@
     }
 
     .section-lead {
-      font-size: 1.05rem;
+      font-size: var(--text-lead);
       color: var(--text-muted);
       max-width: 58ch;
       margin-bottom: 2.5rem;
     }
-    .section-moss .section-lead { color: color-mix(in srgb, var(--white) 70%, var(--sage)); }
+    .section-lead--tight { margin-bottom: 0; }
 
     /* ── Problem grid ── */
     .pain-grid {
@@ -469,13 +609,13 @@
     }
 
     .pain-item h3 {
-      font-size: 1rem;
+      font-size: var(--text-title);
       font-weight: 700;
       margin-bottom: .5rem;
     }
 
     .pain-item p {
-      font-size: .92rem;
+      font-size: var(--text-body);
       color: var(--text-muted);
       line-height: 1.55;
     }
@@ -500,7 +640,7 @@
       display: flex;
       align-items: center;
       gap: .65rem;
-      font-size: 1rem;
+      font-size: var(--text-title);
       font-weight: 700;
       margin-bottom: .5rem;
       line-height: 1.25;
@@ -523,7 +663,7 @@
     .use-item--article h3::before { background-image: url("/assets/icons/article.svg"); }
 
     .use-item p {
-      font-size: .92rem;
+      font-size: var(--text-body);
       color: var(--text-muted);
       line-height: 1.55;
     }
@@ -547,7 +687,7 @@
     .story cite {
       display: block;
       margin-top: .75rem;
-      font-size: .85rem;
+      font-size: var(--text-body-sm);
       font-style: normal;
       font-weight: 600;
       color: var(--text-muted);
@@ -561,7 +701,7 @@
     }
 
     .stat-callout p {
-      font-size: .92rem;
+      font-size: var(--text-body);
       color: var(--text);
       line-height: 1.55;
     }
@@ -612,31 +752,27 @@
     }
 
     .price-card h3 {
-      font-size: 1rem;
+      font-size: var(--text-title);
       font-weight: 700;
       letter-spacing: 0.01em;
       margin-bottom: 0.35rem;
     }
 
     .price-kicker {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: 0.5rem;
     }
 
     .price-amount {
-      font-size: 2.25rem;
+      font-size: var(--text-price);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
 
     .price-amount small {
-      font-size: 0.9rem;
+      font-size: var(--text-body-sm);
       font-weight: 500;
       opacity: 0.72;
     }
@@ -662,17 +798,18 @@
       font-weight: 500;
       letter-spacing: -0.02em;
       color: var(--moss-deep);
+      font-variant-numeric: tabular-nums;
     }
 
     .price-credit-label {
-      font-size: 0.82rem;
+      font-size: var(--text-body-sm);
       font-weight: 600;
       color: var(--moss);
     }
 
     .price-credit-note {
       margin-top: 0.35rem;
-      font-size: 0.8rem;
+      font-size: var(--text-body-sm);
       line-height: 1.45;
       color: var(--text-muted);
     }
@@ -685,7 +822,7 @@
 
     .price-includes li {
       padding: 0.55rem 0;
-      font-size: 0.875rem;
+      font-size: var(--text-body-sm);
       line-height: 1.45;
       border-bottom: 1px solid var(--sage-muted);
       color: var(--text);
@@ -753,7 +890,7 @@
     .price-card-creator .price-cta {
       padding-top: 0.65rem;
       padding-bottom: 0.65rem;
-      font-size: 0.92rem;
+      font-size: var(--text-body-sm);
     }
 
     /* Pro: best value */
@@ -768,9 +905,9 @@
       transform: rotate(10deg);
       background: var(--scale-red);
       color: var(--white);
-      font-size: 0.62rem;
+      font-size: var(--text-label);
       font-weight: 700;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       padding: 0.35rem 0.7rem;
       border-radius: 999px;
@@ -790,7 +927,7 @@
     .pricing-extra {
       margin-top: 1.35rem;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: var(--text-body-sm);
       color: var(--text-muted);
     }
 
@@ -809,13 +946,20 @@
 
     .faq-item summary {
       font-weight: 600;
-      font-size: .98rem;
+      font-size: var(--text-body);
       cursor: pointer;
       list-style: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
+      border-radius: var(--r-sm);
+      padding: .15rem 0;
+    }
+
+    .faq-item summary:focus-visible {
+      outline: 2px solid var(--scale-red);
+      outline-offset: 2px;
     }
 
     .faq-item summary::-webkit-details-marker { display: none; }
@@ -832,7 +976,7 @@
 
     .faq-item p {
       margin-top: .75rem;
-      font-size: .9rem;
+      font-size: var(--text-body);
       color: var(--text-muted);
       line-height: 1.6;
       max-width: 60ch;
@@ -854,7 +998,7 @@
     .product-preview-copy h2 { max-width: none; }
     .product-preview-visual {
       margin: 0;
-      width: min(100%, clamp(18rem, 42vw, 30rem));
+      width: min(100%, clamp(20rem, 52vw, 40rem));
     }
     @media (min-width: 900px) {
       .product-preview-visual { justify-self: start; }
@@ -896,7 +1040,7 @@
       padding: .7rem 1rem;
       background: var(--sage-soft);
       border-top: 1px solid var(--sage-muted);
-      font-size: .8rem;
+      font-size: var(--text-body-sm);
       font-weight: 600;
       color: var(--moss);
       letter-spacing: .01em;
@@ -934,20 +1078,20 @@
 
     .how-step-num {
       font-family: var(--mono);
-      font-size: .72rem;
+      font-size: var(--text-label);
       font-weight: 500;
       color: var(--scale-red);
       letter-spacing: .06em;
     }
 
     .how-card h3 {
-      font-size: 1rem;
+      font-size: var(--text-title);
       font-weight: 700;
       line-height: 1.25;
     }
 
     .how-card > p {
-      font-size: .85rem;
+      font-size: var(--text-body-sm);
       color: var(--text-muted);
       line-height: 1.45;
       max-width: 26ch;
@@ -971,9 +1115,10 @@
 
     .mock-label {
       display: block;
-      font-size: .62rem;
-      font-weight: 700;
-      letter-spacing: .07em;
+      font-family: var(--font);
+      font-size: var(--text-label);
+      font-weight: 600;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: .35rem;
@@ -993,7 +1138,7 @@
 
     .mock-field--mono {
       font-family: var(--mono);
-      font-size: .75rem;
+      font-size: var(--text-mono-data);
     }
 
     .mock-niche {
@@ -1069,6 +1214,7 @@
       font-weight: 500;
       color: var(--moss-deep);
       text-align: right;
+      font-variant-numeric: tabular-nums;
     }
 
     .mock-rank-toggle {
@@ -1221,63 +1367,88 @@
 
     .mock-nav-item--active strong { color: var(--sage); }
 
-    /* ── Footer CTA ── */
-    .footer-cta {
-      text-align: center;
-      padding: clamp(4rem, 10vw, 6rem) clamp(1.25rem, 4vw, 3rem);
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 100%, var(--sage-soft) 0%, transparent 70%),
-        var(--white);
-    }
-
-    .footer-cta h2 {
-      font-size: clamp(1.5rem, 3.5vw, 2.1rem);
-      font-weight: 700;
-      max-width: 28ch;
-      margin: 0 auto 1rem;
-      line-height: 1.2;
-    }
-
-    .footer-cta p {
-      color: var(--text-muted);
-      max-width: 42ch;
-      margin: 0 auto 1.75rem;
-      font-size: 1rem;
-    }
-
-    .footer-cta .mascot-wave {
-      width: 72px;
-      margin: 0 auto 1.5rem;
-      opacity: .9;
-    }
-
-  .site-footer {
-      padding: 2rem clamp(1.25rem, 4vw, 3rem);
+    /* ── Footer ── */
+    .site-footer {
+      padding: 2rem clamp(1.25rem, 4vw, 3rem) 2.5rem;
       border-top: 1px solid var(--sage-muted);
+      background: var(--sage-soft);
+    }
+
+    .site-footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       align-items: center;
-      gap: 1rem;
-      font-size: .82rem;
+      justify-content: space-between;
+      gap: 1rem 1.5rem;
+    }
+
+    .site-footer p {
+      font-size: var(--text-body-sm);
       color: var(--text-muted);
     }
 
-    .site-footer a { color: var(--text-muted); text-decoration: none; }
-    .site-footer a:hover { color: var(--scale-red); }
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem 1.25rem;
+      list-style: none;
+      font-size: var(--text-body-sm);
+      font-weight: 500;
+    }
+
+    .footer-nav a {
+      color: var(--moss);
+      text-decoration: none;
+    }
+
+    .footer-nav a:hover { color: var(--scale-red); }
 
     @media (max-width: 640px) {
-      .nav-links { display: none; }
+      .nav-toggle { display: inline-flex; }
+
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--white);
+        border-bottom: 1px solid var(--sage-muted);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .25s cubic-bezier(.16, 1, .3, 1);
+      }
+
+      .site-nav.is-menu-open .nav-menu {
+        max-height: 16rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: .5rem clamp(1.25rem, 4vw, 3rem) 1rem;
+      }
+
+      .nav-links a {
+        display: flex;
+        align-items: center;
+        min-height: 2.75rem;
+        padding: .5rem 0;
+      }
 
       .site-nav {
-        --brand-mascot-width: 56px;
+        flex-wrap: wrap;
         gap: .65rem;
+        --brand-mascot-width: 56px;
       }
 
       .brand {
         position: static;
         padding-right: 0;
-        flex-shrink: 0;
       }
 
       .brand-mascot {
@@ -1291,26 +1462,35 @@
         position: relative;
         z-index: 2;
         flex-shrink: 0;
-        padding: .52rem .72rem;
-        font-size: .78rem;
+        margin-left: auto;
+        padding: .55rem .85rem;
+        font-size: var(--text-body-sm);
         white-space: nowrap;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .site-nav.is-menu-open .nav-menu {
+        transition: none;
+      }
+
       .brand-mascot {
-        transform: translateY(0);
+        transform: translateY(calc((1 - var(--mascot-reveal)) * 110%));
       }
 
       @media (max-width: 640px) {
         .brand-mascot {
-          transform: translateX(-50%) translateY(0);
+          transform: translateX(-50%) translateY(calc((1 - var(--mascot-reveal)) * 110%));
         }
       }
 
       .site-nav .nav-cta {
-        opacity: 1;
+        opacity: var(--mascot-reveal);
         transform: none;
+        pointer-events: none;
+      }
+
+      .site-nav.is-scrolled .nav-cta {
         pointer-events: auto;
       }
 
@@ -1326,28 +1506,44 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden">
+    <symbol id="icon-google" viewBox="0 0 24 24">
+      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+    </symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24" fill="none">
+      <path d="M12 3l1.55 4.75L18 9.25l-4.45 1.5L12 15.5 10.45 10.75 6 9.25l4.45-1.5L12 3z" fill="currentColor" opacity=".9"/>
+      <path d="M5 14.5l.9 2.75L8.5 18l-2.6.9L5 21.5l-.9-2.6L1.5 18l2.6-.75L5 14.5z" fill="currentColor" opacity=".55"/>
+    </symbol>
+  </svg>
+
   <header class="site-nav">
     <a class="brand" href="/" aria-label="Ansaur home">
       <span class="brand-wordmark">
         <span class="brand-name">Ansaur</span><span class="brand-tld">.com</span>
+        <img class="brand-mascot" src="/assets/ansaur-mascot.png" alt="" width="46" height="46" />
       </span>
-      <img class="brand-mascot" src="/assets/ansaur-mascot.png" alt="" width="46" height="46" />
     </a>
-    <ul class="nav-links">
-      <li><a href="#preview">See it</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav-menu">Menu</button>
+    <nav class="nav-menu" id="site-nav-menu" aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#preview">See it</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
     <a class="btn btn-primary nav-cta" href="#pricing">Get Me Questions</a>
   </header>
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <h1 id="hero-title">People have<br />real questions<br /><em>You have answers</em></h1>
+        <h1 id="hero-title"><em>Discover questions</em> your audience already searches for</h1>
         <p class="hero-lead">
-          Get keyword data, and a command center to do something with your knowledge. Figure out what content to make now. Rank for the terms your audience is already looking for.
+          Get real search numbers, and one place to pick your next topic. Figure out what content to make now. Show up when people search for what your audience is already looking for.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary hero-cta" href="#pricing">Get Me Questions</a>
@@ -1359,66 +1555,66 @@
 <div class="hero-queries" aria-hidden="true">
         <div class="query-slot" style="--qx:0%;--qy:0%;--qrot:-7deg">
           <div class="query-pill query-pill--google" data-questions="[&quot;why is my sourdough so dense&quot;, &quot;how long to proof sourdough overnight&quot;, &quot;can you overproof sourdough&quot;]">
-            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" role="img"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
+            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-google"/></svg></span>
             <span class="query-pill-text"><span class="query-typed"></span><span class="query-caret" aria-hidden="true"></span></span>
           </div>
         </div>
         <div class="query-slot" style="--qx:48%;--qy:-2%;--qrot:5deg">
           <div class="query-pill query-pill--chat" data-questions="[&quot;explain index funds vs etfs simply&quot;, &quot;how much emergency fund do i need&quot;, &quot;is a roth ira worth it at 30&quot;]">
-            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" role="img"><path d="M12 3l1.55 4.75L18 9.25l-4.45 1.5L12 15.5 10.45 10.75 6 9.25l4.45-1.5L12 3z" fill="currentColor" opacity=".9"/><path d="M5 14.5l.9 2.75L8.5 18l-2.6.9L5 21.5l-.9-2.6L1.5 18l2.6-.75L5 14.5z" fill="currentColor" opacity=".55"/></svg></span>
+            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-chat"/></svg></span>
             <span class="query-pill-text"><span class="query-typed"></span><span class="query-caret" aria-hidden="true"></span></span>
           </div>
         </div>
         <div class="query-slot" style="--qx:-4%;--qy:28%;--qrot:-4deg">
           <div class="query-pill query-pill--google" data-questions="[&quot;why does my cat pee outside litter box&quot;, &quot;how often should i clip cat nails&quot;, &quot;what food is bad for cats&quot;]">
-            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" role="img"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
+            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-google"/></svg></span>
             <span class="query-pill-text"><span class="query-typed"></span><span class="query-caret" aria-hidden="true"></span></span>
           </div>
         </div>
         <div class="query-slot" style="--qx:50%;--qy:20%;--qrot:3deg">
           <div class="query-pill query-pill--chat" data-questions="[&quot;how long rest between sets for muscle&quot;, &quot;should i do cardio before weights&quot;, &quot;why am i not losing belly fat&quot;]">
-            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" role="img"><path d="M12 3l1.55 4.75L18 9.25l-4.45 1.5L12 15.5 10.45 10.75 6 9.25l4.45-1.5L12 3z" fill="currentColor" opacity=".9"/><path d="M5 14.5l.9 2.75L8.5 18l-2.6.9L5 21.5l-.9-2.6L1.5 18l2.6-.75L5 14.5z" fill="currentColor" opacity=".55"/></svg></span>
+            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-chat"/></svg></span>
             <span class="query-pill-text"><span class="query-typed"></span><span class="query-caret" aria-hidden="true"></span></span>
           </div>
         </div>
         <div class="query-slot query-slot--hide-sm" style="--qx:8%;--qy:52%;--qrot:-2deg">
           <div class="query-pill query-pill--google" data-questions="[&quot;when to plant tomatoes in zone 7&quot;, &quot;why are my tomato leaves curling&quot;, &quot;how often water tomato seedlings&quot;]">
-            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" role="img"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
+            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-google"/></svg></span>
             <span class="query-pill-text"><span class="query-typed"></span><span class="query-caret" aria-hidden="true"></span></span>
           </div>
         </div>
         <div class="query-slot query-slot--hide-sm" style="--qx:42%;--qy:50%;--qrot:6deg">
           <div class="query-pill query-pill--chat" data-questions="[&quot;what lens for portrait photography beginner&quot;, &quot;why do my photos look grainy&quot;, &quot;how to shoot in low light without flash&quot;]">
-            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" role="img"><path d="M12 3l1.55 4.75L18 9.25l-4.45 1.5L12 15.5 10.45 10.75 6 9.25l4.45-1.5L12 3z" fill="currentColor" opacity=".9"/><path d="M5 14.5l.9 2.75L8.5 18l-2.6.9L5 21.5l-.9-2.6L1.5 18l2.6-.75L5 14.5z" fill="currentColor" opacity=".55"/></svg></span>
+            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-chat"/></svg></span>
             <span class="query-pill-text"><span class="query-typed"></span><span class="query-caret" aria-hidden="true"></span></span>
           </div>
         </div>
         <div class="query-slot query-slot--hide-sm" style="--qx:46%;--qy:6%;--qrot:4deg">
           <div class="query-pill query-pill--google" data-questions="[&quot;how often should i upload youtube videos&quot;, &quot;why did my youtube views drop suddenly&quot;, &quot;do youtube shorts hurt long form&quot;]">
-            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" role="img"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
+            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-google"/></svg></span>
             <span class="query-pill-text"><span class="query-typed"></span><span class="query-caret" aria-hidden="true"></span></span>
           </div>
         </div>
         <div class="query-slot query-slot--hide-sm" style="--qx:-2%;--qy:62%;--qrot:-5deg">
           <div class="query-pill query-pill--chat" data-questions="[&quot;why is my python script so slow&quot;, &quot;how to fix modulenotfounderror python&quot;, &quot;difference list vs tuple python&quot;]">
-            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" role="img"><path d="M12 3l1.55 4.75L18 9.25l-4.45 1.5L12 15.5 10.45 10.75 6 9.25l4.45-1.5L12 3z" fill="currentColor" opacity=".9"/><path d="M5 14.5l.9 2.75L8.5 18l-2.6.9L5 21.5l-.9-2.6L1.5 18l2.6-.75L5 14.5z" fill="currentColor" opacity=".55"/></svg></span>
+            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-chat"/></svg></span>
             <span class="query-pill-text"><span class="query-typed"></span><span class="query-caret" aria-hidden="true"></span></span>
           </div>
         </div>
         <div class="query-slot" style="--qx:38%;--qy:-4%;--qrot:1deg">
           <div class="query-pill query-pill--google" data-questions="[&quot;why is my garbage disposal humming&quot;, &quot;how to unclog a shower drain hair&quot;, &quot;what grit sandpaper before stain&quot;]">
-            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" role="img"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
+            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-google"/></svg></span>
             <span class="query-pill-text"><span class="query-typed"></span><span class="query-caret" aria-hidden="true"></span></span>
           </div>
         </div>
         <div class="query-slot query-slot--hide-sm" style="--qx:10%;--qy:72%;--qrot:-3deg">
           <div class="query-pill query-pill--chat" data-questions="[&quot;how much sleep does a 2 year old need&quot;, &quot;why wont my toddler stay in bed&quot;, &quot;is it normal to wake up at 3am&quot;]">
-            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" role="img"><path d="M12 3l1.55 4.75L18 9.25l-4.45 1.5L12 15.5 10.45 10.75 6 9.25l4.45-1.5L12 3z" fill="currentColor" opacity=".9"/><path d="M5 14.5l.9 2.75L8.5 18l-2.6.9L5 21.5l-.9-2.6L1.5 18l2.6-.75L5 14.5z" fill="currentColor" opacity=".55"/></svg></span>
+            <span class="query-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-chat"/></svg></span>
             <span class="query-pill-text"><span class="query-typed"></span><span class="query-caret" aria-hidden="true"></span></span>
           </div>
         </div>
       </div>
-        <img class="hero-mascot" src="/assets/ansaur-mascot.png" alt="Ansaur mascot: a curious dinosaur with glasses, one paw raised, spotting a question-shaped gap" width="380" height="253" />
+        <img class="hero-mascot" src="/assets/ansaur-mascot.png" alt="Ansaur mascot: a curious dinosaur with glasses, one paw raised, spotting a question-shaped gap" width="380" height="253" fetchpriority="high" />
       </div>
     </section>
 
@@ -1427,10 +1623,10 @@
         <figure class="product-preview-visual">
           <a class="product-shot" href="/example" aria-label="Open example dashboard">
             <img
-              src="/assets/example-dashboard-preview.png"
-              alt="Ansaur question queue, example dashboard with search volume and rank status"
-              width="1280"
-              height="800"
+              src="/assets/example-dashboard-screenshot.png"
+              alt="Ansaur question queue, example dashboard with monthly searches and whether you rank"
+              width="2396"
+              height="1416"
               loading="lazy"
               decoding="async"
             />
@@ -1438,10 +1634,10 @@
           </a>
         </figure>
         <div class="product-preview-copy">
-          <h2 id="preview-title">Real questions.<br>Real volume.<br>So you can prioritize your work.</h2>
-          <p class="section-lead" style="margin-bottom: 0">
-            Ansaur checks whether you already rank, then lines up the gaps with search volume
-            so you know what to film, write, or answer next. Not a keyword wheel, a workflow.
+          <h2 id="preview-title">Real questions.<br>Real monthly searches.<br>To prioritize your work</h2>
+          <p class="section-lead section-lead--tight">
+            Ansaur checks whether you already show up on Google, then lines up questions you have not answered yet by monthly searches
+            so you know what to make next. Not a random idea generator. A step-by-step queue.
           </p>
         </div>
       </div>
@@ -1449,8 +1645,13 @@
 
     <section class="section" id="how" aria-labelledby="how-title">
       <div class="section-inner">
-        <h2 id="how-title">Your niche in. A ranked queue out.</h2>
-        <p class="section-lead">Real questions people search, with volume and rank status. A queue you can act on.</p>
+        <h2 id="how-title">Stop brainstorming what to make next.</h2>
+        <p class="section-lead">
+          Enter your topic, get monthly search counts. Your next piece of content is already on the list.
+          But Ansaur is more than a question finder. It tracks what you publish, checks whether you rank on Google,
+          and gives you tools to turn each question into content people actually want to read.
+          Answer enough real questions and you become the authority in your niche.
+        </p>
         <div class="how-cards">
           <article class="how-card">
             <h3>Enter your topic or expertise.</h3>
@@ -1461,11 +1662,11 @@
             </div>
           </article>
           <article class="how-card">
-            <h3>Get Questions, With Search Volume</h3>
+            <h3>Get real questions with monthly search counts</h3>
             <div class="works-mock" aria-hidden="true">
               <div class="mock-table-head mock-table-head--simple">
                 <span>Question</span>
-                <span>Volume</span>
+                <span>Searches/mo</span>
               </div>
               <div class="mock-table-row mock-table-row--simple">
                 <span class="mock-kw">how to vlookup in google sheets</span>
@@ -1511,14 +1712,14 @@
       </div>
     </section>
 
-    <section class="section section-sage" id="uses">
+    <section class="section section-sage" id="uses" aria-labelledby="uses-title">
       <div class="section-inner">
-        <h2>How to use the Questions</h2>
-        <p class="section-lead">Your audience is already asking themselves these in Google. Answer them before they think to reach out.</p>
+        <h2 id="uses-title">Make Better Content</h2>
+        <p class="section-lead">Your audience is already asking. Answer them before they think to reach out.</p>
         <div class="uses-grid">
           <article class="use-item use-item--linkedin">
             <h3>LinkedIn Posts</h3>
-            <p>Turn a high-volume question into a post that stops the scroll. You are answering what they are already wondering.</p>
+            <p>Turn a heavily searched question into a post that stops the scroll. You are answering what they are already wondering.</p>
           </article>
           <article class="use-item use-item--x">
             <h3>Tweets on X</h3>
@@ -1552,41 +1753,41 @@
       </div>
     </section>
 
-    <section class="section" id="problem">
+    <section class="section" id="problem" aria-labelledby="problem-title">
       <div class="section-inner">
-        <h2>You know the subject. People are searching. Let's connect you through search.</h2>
+        <h2 id="problem-title">You know the subject. People are searching. Ansaur.com connects you</h2>
         <p class="section-lead">
-          Somewhere between your expertise and their Google search bar is a queue of questions worth answering.
-          Most tools cost too much and do too much. AI invents keywords nobody is actually searching for.
+          Somewhere between your expertise and their search bar is a queue of questions worth answering.
+          Most tools cost too much and do too much. AI invents questions nobody is actually searching for.
         </p>
         <div class="pain-grid">
           <article class="pain-item">
             <h3>Ahrefs is overkill</h3>
-            <p>$129+/month for backlinks and audits when all you need is a ranked list of question keywords with volume.</p>
+            <p>$129+/month for link reports and site audits when all you need is a ranked list of real questions people type into Google, with monthly searches.</p>
           </article>
           <article class="pain-item">
-            <h3>Free wheels miss the point</h3>
-            <p>Clicking through PAA and hoping Google is truthful? Pretty viz, wrong shapes, no volume, and no check against what you already own.</p>
+            <h3>Relying on Autocomplete</h3>
+            <p>Clicking through Google's "People also ask" boxes and hoping Google is truthful? Pretty viz, weak questions, no search counts, and no check against what you already own.</p>
           </article>
           <article class="pain-item">
             <h3>AI makes up nonsense questions</h3>
-            <p>AI generates absolute hallucinations. It is not real people asking real questions. It is some super mid kind of b.s.</p>
+            <p>AI invents questions nobody actually searches. It is not real people asking real questions.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section section-sage" id="story">
+    <section class="section section-sage" id="story" aria-labelledby="story-title">
       <div class="section-inner story">
         <div>
           <p class="section-label">Case study</p>
-          <h2>Better Sheets went from random tutorials to searchable answers</h2>
-          <p class="section-lead" style="margin-bottom:0">
+          <h2 id="story-title">Better Sheets went from random tutorials to searchable answers</h2>
+          <p class="section-lead section-lead--tight">
             Andrew started with feature demos. After monetization, growth stalled around <strong>$100/month</strong>.
             The shift: answer the exact questions people type into Google.
           </p>
           <div class="stat-callout">
-            <p>Within months, ad revenue climbed from <strong>$100 to over $1,000/month</strong>. Same channel. Same expertise. Different keyword strategy, built on real search data.</p>
+            <p>Within months, ad revenue climbed from <strong>$100 to over $1,000/month</strong>. Same channel. Same expertise. Different topics, built on real search numbers.</p>
           </div>
           <blockquote>
             I didn't need more videos. I needed the right videos, for questions people actually search.
@@ -1596,9 +1797,9 @@
       </div>
     </section>
 
-    <section class="section" id="pricing">
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
       <div class="section-inner">
-        <h2>PRICING</h2>
+        <h2 id="pricing-title">Pricing</h2>
         <p class="section-lead">Export is the list. Creator is the desk. Most export buyers upgrade within a month.</p>
         <div class="pricing-grid">
           <article class="price-card price-card-export">
@@ -1609,11 +1810,11 @@
             </header>
             <ul class="price-includes">
               <li>Up to 200 questions</li>
-              <li>With Search Volume</li>
+              <li>With monthly searches</li>
               <li>CSV download</li>
               <li>No subscription</li>
             </ul>
-            <a class="btn btn-ghost price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Export%20Questions">Get the export</a>
+            <a class="btn btn-ghost price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Export%20Questions" data-buy-plan="export">Get the export</a>
           </article>
           <article class="price-card price-card-creator">
             <header class="price-head">
@@ -1622,15 +1823,15 @@
               <p class="price-amount">$25 <small>/ month</small></p>
             </header>
             <ul class="price-includes">
-              <li>5,000 credits</li>
-              <li>That's roughly 1,500 questions w/ Search Volume</li>
+              <li>5,000 research credits (~1,500 questions)</li>
+              <li>That's roughly 1,500 questions w/ monthly searches</li>
               <li>Track your work</li>
-              <li>Discover questions with Scout</li>
-              <li>Page 1 rank checks on every row</li>
-              <li>Global and Local search volume</li>
+              <li>Scout: find new questions in your niche</li>
+              <li>See if you show up on page 1 of Google for each question</li>
+              <li>Searches worldwide and in your country</li>
               <li>CSV export anytime</li>
             </ul>
-            <a class="btn btn-primary price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Creator%20plan">Start tracking</a>
+            <a class="btn btn-primary price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Creator%20plan" data-buy-plan="creator">Start tracking</a>
           </article>
           <article class="price-card price-card-pro">
             <span class="price-badge" aria-hidden="true">Best Value</span>
@@ -1640,47 +1841,47 @@
               <p class="price-amount">$50 <small>/ month</small></p>
             </header>
             <ul class="price-includes">
-              <li>12,000 credits</li>
-              <li>20% bonus credits</li>
+              <li>12,000 research credits</li>
+              <li>20% bonus research credits</li>
               <li>Everything in Creator</li>
-              <li>2.4× monthly credits for Scout runs</li>
-              <li>More rank rechecks as your library grows</li>
+              <li>2.4× monthly credits for Scout (finds new questions in your niche)</li>
+              <li>More checks to see if you show up on Google as your library grows</li>
             </ul>
-            <a class="btn btn-neu price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Pro%20plan">Go Pro</a>
+            <a class="btn btn-neu price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Pro%20plan" data-buy-plan="pro">Go Pro</a>
           </article>
         </div>
-        <p class="pricing-extra">Need more than your monthly credits? <strong>Top-ups: $10 / 2,000 credits</strong> on Creator and Pro.</p>
+        <p class="pricing-extra">Need more than your monthly research allowance? <strong>Top-ups: $10 / 2,000 credits</strong> on Creator and Pro.</p>
       </div>
     </section>
 
-    <section class="section section-sage" id="faq">
+    <section class="section section-sage" id="faq" aria-labelledby="faq-title">
       <div class="section-inner">
         <p class="section-label">FAQ</p>
-        <h2>Common questions</h2>
+        <h2 id="faq-title">Common questions</h2>
         <div class="faq-list">
           <details class="faq-item">
             <summary>Can I buy a one-time export without subscribing?</summary>
-            <p>Yes. Export Questions is $20: one CSV with up to 200 question gaps, volume data, and rank status. No recurring charge.</p>
+            <p>Yes. Export Questions is $20: one CSV with up to 200 questions you have not answered yet, monthly search counts, and whether you already rank for each. No recurring charge.</p>
           </details>
           <details class="faq-item">
-            <summary>Do you use AI to generate keywords?</summary>
-            <p>No. Every keyword comes from what people actually type into Google, with real search volume. AI may help format exports later; it will never invent opportunities.</p>
+            <summary>Do you use AI to generate questions?</summary>
+            <p>No. Every question comes from what people actually type into Google, with real monthly search counts. It will never invent opportunities.</p>
           </details>
           <details class="faq-item">
             <summary>What is a credit?</summary>
-            <p>Credits are what you spend when you run research in Ansaur: checking ranks, discovering questions, filling search volume, and similar actions. Not everything costs credits, but many do. Your plan includes a monthly allowance, and you will see the cost before you run something.</p>
+            <p>Credits are your monthly research allowance in Ansaur. You spend them on actions like seeing if you show up on Google, finding new questions with Scout, and filling in monthly search counts. You will see the cost before you run something.</p>
           </details>
           <details class="faq-item">
             <summary>Do I need API keys or YouTube login?</summary>
-            <p>No. You should not need API keys or a Google Cloud console. Give us your niche topic and URLs. No OAuth, no account access required.</p>
+            <p>No. No login to your Google account required. Give us your niche topic and URLs. No API keys or YouTube login needed.</p>
           </details>
           <details class="faq-item">
             <summary>Can I use this for a blog, not YouTube?</summary>
             <p>Yes. Point it at your domain instead of a channel. Track published articles the same way you track videos.</p>
           </details>
           <details class="faq-item">
-            <summary>I already have a keyword list. Can I upload it?</summary>
-            <p>Yes. Upload your CSV and get volume plus gap status. No need to re-hunt phrases you already found.</p>
+            <summary>I already have a list of questions. Can I upload it?</summary>
+            <p>Yes. Upload your CSV and get monthly searches plus whether you already rank for each. No need to re-hunt phrases you already found.</p>
           </details>
           <details class="faq-item">
             <summary>is this for kids?</summary>
@@ -1689,35 +1890,62 @@
         </div>
       </div>
     </section>
-
-    <section class="footer-cta" aria-labelledby="footer-cta-title">
-      <img class="mascot-wave" src="/assets/ansaur-mascot.png" alt="" width="72" height="48" />
-      <h2 id="footer-cta-title">Stop guessing. Start with real search data.</h2>
-      <p>People are already searching. You have the answers. Ansaur connects the two with data you can act on.</p>
-    </section>
   </main>
 
   <footer class="site-footer">
-    <span>&copy; 2026 Ansaur</span>
-    <span>
-      <a href="mailto:kamphey+ansaur@gmail.com">kamphey+ansaur@gmail.com</a>
-      &nbsp;&middot;&nbsp;
-      <a href="/example">Example</a>
-      &nbsp;&middot;&nbsp;
-      <a href="/questions">App</a>
-    </span>
+    <div class="site-footer-inner">
+      <p>Ansaur.com · Real questions, real volume, real gaps.</p>
+      <ul class="footer-nav">
+        <li><a href="#preview">See it</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="mailto:kamphey+ansaur@gmail.com">Contact</a></li>
+      </ul>
+    </div>
   </footer>
+
+  <div class="buy-modal" id="buy-modal" hidden>
+    <div class="buy-modal-backdrop" data-buy-modal-close tabindex="-1"></div>
+    <div class="buy-modal-panel" role="dialog" aria-modal="true" aria-labelledby="buy-modal-title">
+      <button type="button" class="buy-modal-close" aria-label="Close" data-buy-modal-close>&times;</button>
+      <h2 class="buy-modal-title" id="buy-modal-title">Email</h2>
+      <form class="buy-modal-form" id="buy-modal-form" novalidate>
+        <label for="buy-modal-email">Email</label>
+        <input
+          type="email"
+          id="buy-modal-email"
+          name="email"
+          placeholder="you@company.com"
+          required
+          autocomplete="email"
+          enterkeyhint="go"
+        />
+        <button type="submit" class="btn btn-primary" id="buy-modal-submit">Continue</button>
+      </form>
+      <p class="buy-modal-status" id="buy-modal-status" role="status" aria-live="polite" hidden></p>
+    </div>
+  </div>
 
 <script>
 (function () {
-  var pills = Array.prototype.slice.call(document.querySelectorAll(".query-pill[data-questions]"));
-  if (!pills.length) return;
+  var allPills = Array.prototype.slice.call(document.querySelectorAll(".query-pill[data-questions]"));
+  if (!allPills.length) return;
 
+  var pillLimit = window.matchMedia("(max-width: 859px)").matches ? 4 : allPills.length;
+  var pills = allPills.slice(0, pillLimit);
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var FADE_MS = 1000;
   var HOLD_MS = 2800;
   var GAP_MS = 2400;
   var RANDOM_MS = 800;
+
+  function sched(fn, ms) {
+    return window.setTimeout(function () {
+      if (document.hidden) return;
+      fn();
+    }, ms);
+  }
 
   function startDelayForIndex(index) {
     if (index < 3) return index * 1000 + Math.random() * RANDOM_MS;
@@ -1741,13 +1969,13 @@
     pill.classList.remove("is-exiting");
     pill.classList.add("is-active");
     if (slot) slot.classList.add("is-live");
-    window.setTimeout(done, FADE_MS);
+    sched(done, FADE_MS);
   }
 
   function fadeOut(pill, slot, done) {
     pill.classList.add("is-exiting");
     pill.classList.remove("is-active");
-    window.setTimeout(function () {
+    sched(function () {
       if (slot) slot.classList.remove("is-live");
       pill.classList.remove("is-exiting");
       done();
@@ -1757,13 +1985,14 @@
   function typeText(textEl, text, done) {
     var index = 0;
     function step() {
+      if (document.hidden) return;
       if (index >= text.length) {
         done();
         return;
       }
       index += 1;
       textEl.textContent = text.slice(0, index);
-      window.setTimeout(step, charDelay(text[index - 1], index));
+      sched(step, charDelay(text[index - 1], index));
     }
     step();
   }
@@ -1783,6 +2012,7 @@
     var qIndex = 0;
 
     function showNext() {
+      if (document.hidden) return;
       var q = questions[qIndex];
       textEl.textContent = "";
       pill.classList.remove("is-done");
@@ -1790,17 +2020,17 @@
       fadeIn(pill, slot, function () {
         typeText(textEl, q, function () {
           pill.classList.add("is-done");
-          window.setTimeout(function () {
+          sched(function () {
             fadeOut(pill, slot, function () {
               qIndex = (qIndex + 1) % questions.length;
-              window.setTimeout(showNext, GAP_MS + Math.random() * 1200);
+              sched(showNext, GAP_MS + Math.random() * 1200);
             });
           }, HOLD_MS + Math.random() * 800);
         });
       });
     }
 
-    window.setTimeout(showNext, startDelay);
+    sched(showNext, startDelay);
   }
 
   pills.forEach(function (pill, index) {
@@ -1809,32 +2039,158 @@
 })();
 (function () {
   var nav = document.querySelector(".site-nav");
-  var heroCta = document.querySelector(".hero-cta");
+  var toggle = document.querySelector(".nav-toggle");
+  var menu = document.getElementById("site-nav-menu");
+  if (!nav || !toggle || !menu) return;
+
+  function setMenuOpen(open) {
+    nav.classList.toggle("is-menu-open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.textContent = open ? "Close" : "Menu";
+  }
+
+  toggle.addEventListener("click", function () {
+    setMenuOpen(!nav.classList.contains("is-menu-open"));
+  });
+
+  menu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      setMenuOpen(false);
+    });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") setMenuOpen(false);
+  });
+
+  window.matchMedia("(min-width: 641px)").addEventListener("change", function (e) {
+    if (e.matches) setMenuOpen(false);
+  });
+})();
+(function () {
+  var nav = document.querySelector(".site-nav");
+  var heroMascot = document.querySelector(".hero-mascot");
   if (!nav) return;
 
   var mascotRevealEnd = 80;
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function onScroll() {
-    var reveal = 1;
+    var reveal = 0;
 
-    if (!reducedMotion) {
-      reveal = 0;
-      if (heroCta) {
-        var past = -heroCta.getBoundingClientRect().bottom;
-        if (past > 0) {
-          reveal = Math.min(1, past / mascotRevealEnd);
-        }
+    if (heroMascot) {
+      var past = -heroMascot.getBoundingClientRect().bottom;
+      if (past > 0) {
+        reveal = reducedMotion ? 1 : Math.min(1, past / mascotRevealEnd);
       }
-      nav.style.setProperty("--mascot-reveal", reveal);
     }
 
+    nav.style.setProperty("--mascot-reveal", reveal);
     nav.classList.toggle("is-scrolled", reveal >= 1);
   }
 
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
+})();
+(function () {
+  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxIqvAUUIbI96QauS2PXkAMxeLWdLxt4T7H9v-ykzjcG31wQzfGbFLtZSyJ6H3Vx_w1kg/exec";
+  var modal = document.getElementById("buy-modal");
+  var form = document.getElementById("buy-modal-form");
+  var emailInput = document.getElementById("buy-modal-email");
+  var submitBtn = document.getElementById("buy-modal-submit");
+  var status = document.getElementById("buy-modal-status");
+  var buyLinks = document.querySelectorAll(".price-cta[data-buy-plan]");
+  if (!modal || !form || !emailInput || !submitBtn || !status || !buyLinks.length) return;
+
+  var activePlan = "";
+  var lastFocus = null;
+
+  function showStatus(message, type) {
+    status.textContent = message;
+    status.hidden = false;
+    status.className = "buy-modal-status is-" + type;
+  }
+
+  function clearStatus() {
+    status.textContent = "";
+    status.hidden = true;
+    status.className = "buy-modal-status";
+  }
+
+  function openModal(plan) {
+    activePlan = plan || "";
+    lastFocus = document.activeElement;
+    clearStatus();
+    form.hidden = false;
+    submitBtn.disabled = false;
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+    emailInput.focus();
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.style.overflow = "";
+    activePlan = "";
+    clearStatus();
+    form.hidden = false;
+    submitBtn.disabled = false;
+    if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+  }
+
+  function submitEmail(email, plan) {
+    var url = FORM_ENDPOINT + "?email=" + encodeURIComponent(email);
+    if (plan) url += "&plan=" + encodeURIComponent(plan);
+    return fetch(url, { method: "GET", mode: "no-cors" });
+  }
+
+  buyLinks.forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      openModal(link.getAttribute("data-buy-plan") || "");
+    });
+  });
+
+  modal.querySelectorAll("[data-buy-modal-close]").forEach(function (el) {
+    el.addEventListener("click", closeModal);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (modal.hidden) return;
+    if (event.key === "Escape") closeModal();
+  });
+
+  emailInput.addEventListener("keydown", function (event) {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    if (typeof form.requestSubmit === "function") {
+      form.requestSubmit();
+    } else {
+      form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    }
+  });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var email = emailInput.value.trim();
+    if (!emailInput.checkValidity()) {
+      emailInput.reportValidity();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitEmail(email, activePlan)
+      .then(function () {
+        form.hidden = true;
+        showStatus("Thanks. We will follow up at " + email + ".", "success");
+        window.setTimeout(closeModal, 1400);
+      })
+      .catch(function () {
+        showStatus("Something went wrong. Try again or email kamphey+ansaur@gmail.com.", "error");
+        submitBtn.disabled = false;
+      });
+  });
 })();
 </script>
 
