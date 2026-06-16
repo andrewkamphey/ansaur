@@ -34,7 +34,8 @@
       pointer-events: none;
       user-select: none;
     }
-    .example-shell .row-search-inline a {
+    .example-shell .row-search-inline a,
+    .example-shell .row-tools-actions .btn-sm {
       pointer-events: auto;
     }
     .example-shell .example-cta {
@@ -188,7 +189,7 @@
       <a class="nav-item" href="#"><span class="nav-label">Scout</span></a>
     </aside>
 
-    <div class="main demo-interactive">
+    <div class="main panel-workflow demo-interactive" data-panel="questions">
       <div class="page-header">
         <h2 class="page-title">Questions</h2>
       </div>
@@ -272,18 +273,14 @@
 
       function rankCell(rank) {
         var pending = rank === "pending";
-        var notRank = rank === "not";
+        var state = pending ? "pending" : "no";
+        var label = pending ? "?" : "No";
         return (
-          '<div class="rank-toggle' +
-          (pending ? " rank-toggle-pending" : "") +
-          '" role="group" aria-label="Page 1 check">' +
-          '<button type="button" class="rank-toggle-btn rank-toggle-yes"' +
-          (notRank ? ' aria-pressed="false"' : "") +
-          ' tabindex="-1">Page 1</button>' +
-          '<button type="button" class="rank-toggle-btn rank-toggle-no"' +
-          (notRank ? ' aria-pressed="true"' : "") +
-          ' tabindex="-1">Not</button>' +
-          "</div>"
+          '<button type="button" class="rank-toggle-btn rank-toggle-ghost" data-state="' +
+          state +
+          '" tabindex="-1" aria-label="Page 1 check">' +
+          label +
+          "</button>"
         );
       }
 

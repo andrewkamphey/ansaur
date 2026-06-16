@@ -46,6 +46,19 @@
   /* Borders & dividers */
   --border-hairline: var(--ansaur-sage-muted);
   --border-strong: var(--ansaur-moss);
+  --border-quiet: oklch(0.91 0.01 155);
+  --border-quiet-strong: oklch(0.88 0.012 155);
+  --border-divider-quiet: oklch(0.93 0.01 155);
+  --border-table-quiet: oklch(0.92 0.01 155);
+  --border-table-row-quiet: oklch(0.94 0.008 155);
+
+  /* Quiet product surfaces (settings, muted panels) */
+  --surface-hover-neutral: oklch(0.98 0.006 155);
+  --surface-muted-fill: oklch(0.97 0.008 155);
+  --surface-table-header-quiet: oklch(0.98 0.006 155);
+  --accent-secondary-quiet: oklch(0.38 0.04 155);
+  --accent-secondary-quiet-hover: oklch(0.32 0.035 155);
+  --focus-ring-color: var(--accent-primary);
 
   /* Signals (data UI) */
   --signal-rank-yes: var(--ansaur-red);
@@ -103,6 +116,26 @@
   --btn-chunky-shadow: var(--nb-shadow);
   --btn-chunky-shadow-hover: var(--nb-shadow-lg);
   --btn-chunky-shadow-press: var(--nb-shadow-press);
+
+  /* Workflow row buttons — green search row, red action row */
+  --btn-wf-radius: 4px;
+  --btn-wf-search-border: 1px solid color-mix(in srgb, var(--ansaur-moss) 42%, var(--border-quiet-strong));
+  --btn-wf-search-bg: color-mix(in srgb, var(--ansaur-sage-soft) 72%, var(--surface-base));
+  --btn-wf-search-bg-hover: color-mix(in srgb, var(--ansaur-sage-soft) 92%, var(--surface-base));
+  --btn-wf-search-color: var(--ansaur-moss-deep);
+  --btn-wf-action-border: 1px solid color-mix(in srgb, var(--ansaur-red) 38%, var(--border-quiet-strong));
+  --btn-wf-action-bg: color-mix(in srgb, var(--ansaur-red-soft) 55%, var(--surface-base));
+  --btn-wf-action-bg-hover: color-mix(in srgb, var(--ansaur-red-soft) 80%, var(--surface-base));
+  --btn-wf-action-color: oklch(0.46 0.16 27);
+  --btn-wf-action-on-bg: color-mix(in srgb, var(--ansaur-red) 78%, var(--ansaur-moss-deep) 22%);
+  --btn-wf-action-on-border: color-mix(in srgb, var(--ansaur-red-deep) 70%, transparent);
+  --btn-wf-action-on-color: var(--text-on-rail);
+  --btn-wf-danger-bg: color-mix(in srgb, var(--ansaur-red) 12%, var(--surface-base));
+  --btn-wf-danger-border: color-mix(in srgb, var(--ansaur-red-deep) 45%, transparent);
+  --btn-wf-danger-color: var(--ansaur-red-deep);
+  --btn-wf-danger-bg-hover: color-mix(in srgb, var(--ansaur-red) 20%, var(--surface-base));
+
+  --focus-ring: 0 0 0 2px var(--focus-ring-color);
 
   /* Motion */
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);

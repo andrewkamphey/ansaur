@@ -377,6 +377,18 @@
       outline-offset: 1px;
     }
 
+    .buy-modal-form input[type="email"].is-invalid {
+      border-color: var(--scale-red);
+    }
+
+    .buy-modal-form.is-submitting .btn {
+      opacity: .85;
+    }
+
+    .buy-modal-form input[readonly] {
+      background: var(--sage-soft);
+    }
+
     .buy-modal-status {
       margin-top: .75rem;
       font-size: var(--text-body-sm);
@@ -668,45 +680,181 @@
       line-height: 1.55;
     }
 
-    /* ── Story ── */
-    .story {
-      max-width: 42rem;
+    /* ── Case study ── */
+    .story-case {
+      padding-block: clamp(4rem, 10vw, 7rem);
     }
 
-    .story blockquote {
-      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+    .story-case-grid {
+      display: grid;
+      gap: clamp(1.25rem, 2.5vw, 1.75rem);
+      max-width: 1120px;
+    }
+
+    .story-case-label {
+      margin-bottom: 0;
+    }
+
+    .story-case-title {
+      font-size: var(--text-title-lg);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -.015em;
+      max-width: 20ch;
+      margin: 0;
+    }
+
+    .story-case-title strong {
+      color: var(--scale-red-deep);
+      font-weight: 700;
+    }
+
+    .story-narrative {
+      display: grid;
+      gap: 0;
+    }
+
+    .story-narrative-body {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .story-narrative-body p,
+    .story-narrative-after p {
+      font-size: var(--text-body);
+      color: var(--text-muted);
+      line-height: 1.62;
+      max-width: 62ch;
+      margin: 0;
+    }
+
+    .story-narrative-after {
+      margin-top: clamp(1.75rem, 3.5vw, 2.25rem);
+      padding-top: clamp(1.5rem, 3vw, 1.85rem);
+      border-top: 1px solid var(--sage-muted);
+    }
+
+    .story-narrative-after strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: var(--text-title);
+      font-weight: 700;
+      color: var(--moss);
+      line-height: 1.25;
+    }
+
+    .story-narrative strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .story-case-quote {
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
       font-weight: 500;
       font-style: italic;
-      line-height: 1.45;
+      line-height: 1.5;
       color: var(--moss);
       border: none;
-      padding: 0;
-      margin: 1.5rem 0 0;
+      padding: clamp(1.5rem, 3vw, 2rem) 0 0;
+      margin: clamp(1.5rem, 3vw, 2rem) 0 0;
+      border-top: 1px solid var(--sage-muted);
+      max-width: 48ch;
     }
 
-    .story cite {
+    .story-case-quote cite {
       display: block;
-      margin-top: .75rem;
+      margin-top: 0.85rem;
       font-size: var(--text-body-sm);
       font-style: normal;
       font-weight: 600;
       color: var(--text-muted);
     }
 
-    .stat-callout {
-      background: var(--scale-red-soft);
-      border-radius: var(--r-md);
-      padding: 1.5rem 1.75rem;
-      margin-top: 1rem;
+    .story-case-proof {
+      display: grid;
+      gap: 0.75rem;
+      align-content: start;
     }
 
-    .stat-callout p {
-      font-size: var(--text-body);
-      color: var(--text);
-      line-height: 1.55;
+    .story-search-label {
+      display: block;
+      font-size: var(--text-label);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--moss);
     }
 
-    .stat-callout strong { color: var(--scale-red-deep); }
+    .story-serp-shots {
+      display: grid;
+      gap: clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .story-serp-shot {
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      border: 1px solid var(--sage-muted);
+      background: var(--white);
+      margin: 0;
+      box-shadow: 0 1px 0 color-mix(in oklch, var(--moss-deep) 6%, transparent);
+    }
+
+    .story-serp-shot img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .story-serp-query {
+      display: block;
+      font-family: var(--mono);
+      font-size: var(--text-mono-data);
+      padding: 0.5rem 0.65rem;
+      background: var(--sage-soft);
+      border-top: 1px solid var(--sage-muted);
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    @media (min-width: 900px) {
+      .story-case-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+        grid-template-areas:
+          "label serps"
+          "title serps"
+          "story serps"
+          "quote serps";
+        column-gap: clamp(2.5rem, 5vw, 4.5rem);
+        row-gap: clamp(0.65rem, 1.5vw, 1rem);
+        align-items: start;
+      }
+
+      .story-case-label { grid-area: label; }
+      .story-case-title { grid-area: title; max-width: 18ch; }
+      .story-case-narrative { grid-area: story; margin-top: clamp(0.75rem, 1.5vw, 1.25rem); }
+      .story-case-quote { grid-area: quote; }
+      .story-case-proof {
+        grid-area: serps;
+        position: sticky;
+        top: 5.5rem;
+      }
+
+      .story-case-title {
+        padding-right: 0;
+      }
+    }
+
+    @media (max-width: 899px) {
+      .story-case-title {
+        max-width: none;
+      }
+
+      .story-case-proof {
+        margin-top: clamp(1.25rem, 3vw, 2rem);
+        padding-top: clamp(1.25rem, 3vw, 1.75rem);
+        border-top: 1px solid var(--sage-muted);
+      }
+    }
 
     /* ── Pricing ── */
     .pricing-grid {
@@ -1777,23 +1925,62 @@
       </div>
     </section>
 
-    <section class="section section-sage" id="story" aria-labelledby="story-title">
-      <div class="section-inner story">
-        <div>
-          <p class="section-label">Case study</p>
-          <h2 id="story-title">Better Sheets went from random tutorials to searchable answers</h2>
-          <p class="section-lead section-lead--tight">
-            Andrew started with feature demos. After monetization, growth stalled around <strong>$100/month</strong>.
-            The shift: answer the exact questions people type into Google.
-          </p>
-          <div class="stat-callout">
-            <p>Within months, ad revenue climbed from <strong>$100 to over $1,000/month</strong>. Same channel. Same expertise. Different topics, built on real search numbers.</p>
+    <section class="section story-case" id="story" aria-labelledby="story-title">
+      <div class="section-inner story-case-grid">
+        <p class="section-label story-case-label">Case study · Better Sheets</p>
+        <h2 class="story-case-title" id="story-title">He went from <strong>$100</strong> to <strong>$1,000/month</strong> after answering simple questions</h2>
+        <div class="story-case-narrative story-narrative">
+          <div class="story-narrative-body">
+            <p>Andrew runs Better Sheets on YouTube. He filmed feature walkthroughs, chased topics that felt interesting, kept a regular upload schedule, and hoped the algorithm would notice. The videos helped people, but they were not what anyone was typing into Google. Once monetization kicked in, ad revenue settled around <strong>$100/month</strong>.</p>
+            <p>Then he looked at real search data: which questions had monthly volume, which ones he had not covered yet. He stopped guessing and filmed straight answers to the gaps. How to vlookup. Why a formula returns #N/A. Can sheets send email alerts.</p>
+            <p>Same channel, same expertise. Within months, ad revenue passed <strong>$1,000/month</strong>.</p>
           </div>
-          <blockquote>
-            I didn't need more videos. I needed the right videos, for questions people actually search.
-            <cite>Andrew, Better Sheets</cite>
-          </blockquote>
+          <div class="story-narrative-after">
+            <p><strong>But that's not all.</strong> Andrew's consulting income went up too. People see him everywhere they turn. Every simple question they ask, he's there. They see him as the Google Sheets authority. They trust him. He's taken on more consulting calls from people who need a deeper understanding of Google Sheets.</p>
+          </div>
         </div>
+        <aside class="story-case-proof" aria-label="Better Sheets Google results">
+          <span class="story-search-label">Showing up in Google</span>
+          <div class="story-serp-shots">
+            <figure class="story-serp-shot">
+              <img
+                src="/assets/better-sheets-google-email-alerts.png"
+                alt="Google search results for can sheets send email alerts, with a Better Sheets YouTube video at the top"
+                width="1024"
+                height="425"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="story-serp-query">can sheets send email alerts</figcaption>
+            </figure>
+            <figure class="story-serp-shot">
+              <img
+                src="/assets/better-sheets-google-alphabetize.png"
+                alt="Google search results for how to alphabetize in google sheets, with a Better Sheets YouTube video at the top"
+                width="1024"
+                height="394"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="story-serp-query">how to alphabetize in google sheets</figcaption>
+            </figure>
+            <figure class="story-serp-shot">
+              <img
+                src="/assets/better-sheets-google-code-in-sheets.png"
+                alt="Google search results for how to code in google sheets, with Better Sheets blog and YouTube video results"
+                width="1024"
+                height="509"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="story-serp-query">how to code in google sheets</figcaption>
+            </figure>
+          </div>
+        </aside>
+        <blockquote class="story-case-quote">
+          There's no second guessing now. When I sit down to make videos. I just answer questions.
+          <cite>Andrew, founder of Better Sheets</cite>
+        </blockquote>
       </div>
     </section>
 
@@ -1865,27 +2052,35 @@
           </details>
           <details class="faq-item">
             <summary>Do you use AI to generate questions?</summary>
-            <p>No. Every question comes from what people actually type into Google, with real monthly search counts. It will never invent opportunities.</p>
+            <p>No. Every question comes from what people actually type into Google, with real monthly search counts. It never invents opportunities. We do use AI to help shape the search, and help you make better content (see Optimize Lab)</p>
           </details>
           <details class="faq-item">
             <summary>What is a credit?</summary>
-            <p>Credits are your monthly research allowance in Ansaur. You spend them on actions like seeing if you show up on Google, finding new questions with Scout, and filling in monthly search counts. You will see the cost before you run something.</p>
+            <p>Credits are your monthly research allowance in Ansaur.com and you spend them on actions like seeing if you show up on Google, finding new questions with Scout, and filling in monthly search counts. You will see the cost before you run something.</p>
           </details>
           <details class="faq-item">
-            <summary>Do I need API keys or YouTube login?</summary>
+            <summary>Do I need API keys?</summary>
             <p>No. No login to your Google account required. Give us your niche topic and URLs. No API keys or YouTube login needed.</p>
           </details>
           <details class="faq-item">
-            <summary>Can I use this for a blog, not YouTube?</summary>
-            <p>Yes. Point it at your domain instead of a channel. Track published articles the same way you track videos.</p>
+            <summary>Can I use this for a blog?</summary>
+            <p>Yes. Point it at your domain's blog. Track published articles. With future connections we can help you rank better.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I use this for YouTube?</summary>
+            <p>Yes. Point it at your channel. Answer questions in video format. Track published videos ranking on Google Search. Views and audience will show up as "External" source in your channel's analytics.</p>
           </details>
           <details class="faq-item">
             <summary>I already have a list of questions. Can I upload it?</summary>
             <p>Yes. Upload your CSV and get monthly searches plus whether you already rank for each. No need to re-hunt phrases you already found.</p>
           </details>
           <details class="faq-item">
-            <summary>is this for kids?</summary>
-            <p>It's for adults. It's for experts who want to share their expertise and experience. Yes it's a cute dinosaur mascot. My 5-year-old son is super curious and keeps asking soooo many questions. And I just thought he would make the perfect mascot for this question finder. It just makes me smile every time I work on this software, to see him here.</p>
+            <summary>Is this for kids?</summary>
+            <p>It's for adults. It's for experts who want to share their expertise and experience. Yes it's a cute dinosaur mascot. My 5-year-old son is super curious and keeps asking soooooo many questions. And I just thought he would make the perfect mascot for this question finder. It makes me smile every time I work on this software, to see him here.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is a top-up?</summary>
+            <p>Sometimes you're deep in research and want to keep going even if you hit your monthly credits. A top up adds a temporary amount of credits to your account so you can keep going.</p>
           </details>
         </div>
       </div>
@@ -2105,6 +2300,11 @@
 
   var activePlan = "";
   var lastFocus = null;
+  var isSubmitting = false;
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
 
   function showStatus(message, type) {
     status.textContent = message;
@@ -2121,9 +2321,13 @@
   function openModal(plan) {
     activePlan = plan || "";
     lastFocus = document.activeElement;
+    isSubmitting = false;
     clearStatus();
     form.hidden = false;
+    form.classList.remove("is-submitting");
     submitBtn.disabled = false;
+    emailInput.readOnly = false;
+    emailInput.classList.remove("is-invalid");
     modal.hidden = false;
     document.body.style.overflow = "hidden";
     emailInput.focus();
@@ -2133,16 +2337,42 @@
     modal.hidden = true;
     document.body.style.overflow = "";
     activePlan = "";
+    isSubmitting = false;
     clearStatus();
     form.hidden = false;
+    form.classList.remove("is-submitting");
     submitBtn.disabled = false;
+    emailInput.readOnly = false;
+    emailInput.value = "";
+    emailInput.classList.remove("is-invalid");
     if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
   }
 
   function submitEmail(email, plan) {
     var url = FORM_ENDPOINT + "?email=" + encodeURIComponent(email);
     if (plan) url += "&plan=" + encodeURIComponent(plan);
-    return fetch(url, { method: "GET", mode: "no-cors" });
+    fetch(url, { method: "GET", mode: "no-cors", keepalive: true }).catch(function () { /* fire and forget */ });
+  }
+
+  function submitForm() {
+    if (isSubmitting) return;
+
+    var email = emailInput.value.trim();
+    if (!isValidEmail(email)) {
+      emailInput.classList.add("is-invalid");
+      emailInput.focus();
+      return;
+    }
+
+    isSubmitting = true;
+    emailInput.classList.remove("is-invalid");
+    submitBtn.disabled = true;
+    emailInput.readOnly = true;
+    form.classList.add("is-submitting");
+    submitEmail(email, activePlan);
+    form.hidden = true;
+    showStatus("Thanks. We will follow up at " + email + ".", "success");
+    window.setTimeout(closeModal, 700);
   }
 
   buyLinks.forEach(function (link) {
@@ -2161,35 +2391,13 @@
     if (event.key === "Escape") closeModal();
   });
 
-  emailInput.addEventListener("keydown", function (event) {
-    if (event.key !== "Enter") return;
-    event.preventDefault();
-    if (typeof form.requestSubmit === "function") {
-      form.requestSubmit();
-    } else {
-      form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    }
+  emailInput.addEventListener("input", function () {
+    emailInput.classList.remove("is-invalid");
   });
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-    var email = emailInput.value.trim();
-    if (!emailInput.checkValidity()) {
-      emailInput.reportValidity();
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitEmail(email, activePlan)
-      .then(function () {
-        form.hidden = true;
-        showStatus("Thanks. We will follow up at " + email + ".", "success");
-        window.setTimeout(closeModal, 1400);
-      })
-      .catch(function () {
-        showStatus("Something went wrong. Try again or email kamphey+ansaur@gmail.com.", "error");
-        submitBtn.disabled = false;
-      });
+    submitForm();
   });
 })();
 </script>
