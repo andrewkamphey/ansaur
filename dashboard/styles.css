@@ -1482,6 +1482,7 @@ body {
   flex-direction: row;
   align-items: flex-start;
   min-height: 100vh;
+  --shell-rail-active-width: 240px;
   --rail-toggle-inset-top: 4px;
   --rail-toggle-inset-left: 4px;
   --rail-toggle-slot: 32px;
@@ -1498,6 +1499,7 @@ body {
 }
 .variant-a.is-rail-collapsed {
   --shell-chrome-top: calc((var(--top-nav-height) - var(--shell-control-height)) / 2);
+  --shell-rail-active-width: 0px;
 }
 .variant-a .rail {
   flex: 0 0 240px;
@@ -6278,6 +6280,7 @@ tr.wf-row-vacating td {
   .variant-a {
     flex-direction: column;
     min-height: 100dvh;
+    --shell-rail-active-width: 0px;
   }
   .variant-a .main {
     order: 1;
@@ -6769,14 +6772,15 @@ tr.wf-row-vacating td {
 .optlab-grid-well-mode-wrap {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  align-self: center;
   gap: 6px;
 }
 .optlab-grid-well-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
   padding: 12px 18px 0;
 }
 .optlab-grid-well-source-tabs,
@@ -6786,17 +6790,116 @@ tr.wf-row-vacating td {
 .optlab-grid-well-toolbar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 4px;
+  flex-wrap: nowrap;
+  flex: 1;
+  min-width: 0;
 }
-.optlab-grid-well-toolbar #optlab-clear-article {
-  margin-left: 4px;
+.optlab-grid-well-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  width: 100%;
+  min-height: 22px;
+}
+.optlab-grid-well-header-bar .optlab-mode-tabs.optlab-grid-well-toolbar,
+.optlab-grid-well-header-bar .optlab-grid-well-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 0;
+  flex-wrap: nowrap;
+  flex: 1;
+  min-width: 0;
 }
 .optlab-grid-well-header-actions {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
   margin-left: auto;
+}
+.optlab-save-status {
+  font-family: var(--font-mono);
+  font-size: var(--type-2xs);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.optlab-grid-rail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+.optlab-archive-clear-btn {
+  flex-shrink: 0;
+  font-size: var(--type-2xs);
+  padding: 0 6px;
+  height: 20px;
+  min-height: 20px;
+  white-space: nowrap;
+}
+.optlab-grid-session--editing {
+  border-color: var(--optlab-mode-ring);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--optlab-mode-ring) 35%, transparent);
+}
+.optlab-grid-session-title-input {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 2px 4px;
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+  background: var(--surface-base);
+  font-family: var(--font-display);
+  font-size: var(--type-sm);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+.optlab-grid-session-title-input:focus {
+  outline: 2px solid var(--optlab-mode-ring);
+  outline-offset: 1px;
+}
+.optlab-handoff-actions .btn-danger {
+  background: var(--btn-wf-danger-bg);
+  border: 1px solid var(--btn-wf-danger-border);
+  color: var(--btn-wf-danger-color);
+}
+.optlab-handoff-actions .btn-danger:hover:not(:disabled) {
+  background: var(--btn-wf-danger-bg-hover);
+  border-color: color-mix(in srgb, var(--ansaur-red-deep) 60%, transparent);
+}
+.optlab-grid-well-header-bar .btn-sm {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  min-height: 22px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  padding: 0 7px;
+  gap: 3px;
+  border: 2px solid var(--nb-stroke);
+  border-radius: 3px;
+  box-shadow: none;
+  transform: none;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.optlab-grid-well-header-bar .btn-sm:hover:not(:disabled),
+.optlab-grid-well-header-bar .btn-sm:active:not(:disabled),
+.optlab-grid-well-header-bar .toolbar-filter-btn[aria-pressed="true"],
+.optlab-grid-well-header-bar .toolbar-filter-btn--open {
+  transform: none;
+  box-shadow: none;
 }
 .optlab-article-head-actions {
   display: flex;
@@ -7537,6 +7640,83 @@ tr.wf-row-vacating td {
   border-color: var(--optlab-mode-ring);
   box-shadow: 0 0 0 3px var(--optlab-mode-ring-glow-md);
   background: color-mix(in oklch, var(--optlab-mode-bg) 35%, var(--surface-base));
+}
+.optlab-trash-zone {
+  position: fixed;
+  bottom: clamp(16px, 3vh, 32px);
+  left: calc(var(--shell-rail-active-width, 0px) / 2 + 50vw);
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border: 2px solid var(--border-hairline);
+  border-radius: 14px;
+  background: color-mix(in oklch, var(--surface-base) 92%, var(--text-muted));
+  box-shadow: 0 8px 28px oklch(0.2 0.02 155 / 0.14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px);
+  transition:
+    opacity 180ms var(--ease-out-quart),
+    transform 180ms var(--ease-out-quart),
+    border-color 160ms var(--ease-out-quart),
+    background 160ms var(--ease-out-quart),
+    box-shadow 160ms var(--ease-out-quart);
+}
+.optlab-trash-zone--visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.optlab-trash-zone--over {
+  border-color: oklch(0.55 0.2 25);
+  background: oklch(0.55 0.2 25);
+  box-shadow: 0 10px 32px oklch(0.45 0.18 25 / 0.35);
+  transform: translateX(-50%) translateY(0) scale(1.05);
+  --optlab-trash-slot: oklch(0.72 0.12 25 / 0.45);
+}
+.optlab-trash-zone--over .optlab-trash-pixel {
+  color: #fff;
+}
+.optlab-trash-zone--over .optlab-trash-label {
+  color: #fff;
+}
+.optlab-trash-pixel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+.optlab-trash-pixel svg {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.optlab-trash-label {
+  font-family: var(--font-mono);
+  font-size: var(--type-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+body.optlab-session-drag-active .brain-page--grid::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  background: oklch(0.2 0.02 155 / 0.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .optlab-trash-zone {
+    transition: none;
+  }
+  .optlab-trash-zone--visible {
+    transform: translateX(-50%) translateY(0);
+  }
 }
 .optlab-handoff-backdrop {
   position: fixed;
