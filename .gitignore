@@ -24,6 +24,10 @@
 /dashboard/assets/*
 !/dashboard/assets/ansaur-a.svg
 !/dashboard/assets/example-dashboard-screenshot.png
+
+/dashboard/assets/optlab-icons/_src/
+/dashboard/assets/optlab-icons/*.png
+/assets/optlab-icons/*.png
 !/dashboard/styles.css
 !/dashboard/ansaur-brand.css
 

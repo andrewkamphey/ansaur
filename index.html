@@ -14,6 +14,8 @@
   <meta name="twitter:title" content="Real questions. Real searches. Become the go-to answer in your niche." />
   <meta name="twitter:description" content="Ansaur researches the questions people search in your niche, with monthly search counts, then shows which ones you have not answered yet." />
   <meta name="twitter:image" content="https://ansaur.com/assets/example-dashboard-screenshot.png" />
+  <!-- Marketing-only: waitlist modal instead of /signup and /login. Set to false when the full app is deployed. -->
+  <meta name="ansaur-marketing-only" content="true" />
   <link rel="icon" href="/assets/ansaur-a.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -182,6 +184,25 @@
       border-radius: var(--r-sm);
     }
     .nav-links a:hover { color: var(--scale-red); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: clamp(.65rem, 1.5vw, 1rem);
+      flex-shrink: 0;
+    }
+
+    .nav-login {
+      font-size: var(--text-body-sm);
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: .35rem .15rem;
+      border-radius: var(--r-sm);
+      white-space: nowrap;
+    }
+
+    .nav-login:hover { color: var(--scale-red); }
 
     /* ── Buttons ── */
     .btn {
@@ -1611,11 +1632,13 @@
         z-index: 0;
       }
 
-      .nav-cta {
+      .nav-actions {
         position: relative;
         z-index: 2;
-        flex-shrink: 0;
         margin-left: auto;
+      }
+
+      .nav-cta {
         padding: .55rem .85rem;
         font-size: var(--text-body-sm);
         white-space: nowrap;
@@ -1692,7 +1715,10 @@
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
-    <a class="btn btn-primary nav-cta" href="#pricing">Find your content gaps</a>
+    <div class="nav-actions">
+      <a class="nav-login" href="/login">Log in</a>
+      <a class="btn btn-primary nav-cta" href="#pricing">Find your content gaps</a>
+    </div>
   </header>
 
   <main id="main">
@@ -2010,7 +2036,7 @@
               <li>CSV download</li>
               <li>No subscription</li>
             </ul>
-            <a class="btn btn-ghost price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Export%20Questions" data-buy-plan="export">Get the export</a>
+            <a class="btn btn-ghost price-cta" href="/signup?plan=export" data-buy-plan="export">Get the export</a>
           </article>
           <article class="price-card price-card-creator">
             <header class="price-head">
@@ -2027,7 +2053,7 @@
               <li>Searches worldwide and in your country</li>
               <li>CSV export anytime</li>
             </ul>
-            <a class="btn btn-primary price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Creator%20plan" data-buy-plan="creator">Start tracking</a>
+            <a class="btn btn-primary price-cta" href="/signup?plan=creator" data-buy-plan="creator">Find Content Gaps</a>
           </article>
           <article class="price-card price-card-pro">
             <span class="price-badge" aria-hidden="true">Best Value</span>
@@ -2043,7 +2069,7 @@
               <li>2.4× monthly credits for Scout (finds new questions in your niche)</li>
               <li>More checks to see if you show up on Google as your library grows</li>
             </ul>
-            <a class="btn btn-neu price-cta" href="mailto:kamphey+ansaur@gmail.com?subject=Pro%20plan" data-buy-plan="pro">Go Pro</a>
+            <a class="btn btn-neu price-cta" href="/signup?plan=pro" data-buy-plan="pro">Go Pro</a>
           </article>
         </div>
         <p class="pricing-extra">Need more than your monthly research allowance? <strong>Top-ups: $10 / 2,000 credits</strong> on Creator and Pro.</p>
@@ -2299,17 +2325,24 @@
 })();
 (function () {
   var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxIqvAUUIbI96QauS2PXkAMxeLWdLxt4T7H9v-ykzjcG31wQzfGbFLtZSyJ6H3Vx_w1kg/exec";
+  var marketingMeta = document.querySelector('meta[name="ansaur-marketing-only"]');
+  var marketingOnly = marketingMeta && marketingMeta.getAttribute("content") === "true";
   var modal = document.getElementById("buy-modal");
   var form = document.getElementById("buy-modal-form");
   var emailInput = document.getElementById("buy-modal-email");
   var submitBtn = document.getElementById("buy-modal-submit");
   var status = document.getElementById("buy-modal-status");
-  var buyLinks = document.querySelectorAll(".price-cta[data-buy-plan]");
-  if (!modal || !form || !emailInput || !submitBtn || !status || !buyLinks.length) return;
+  var modalTitle = document.getElementById("buy-modal-title");
+  if (!modal || !form || !emailInput || !submitBtn || !status) return;
 
   var activePlan = "";
   var lastFocus = null;
   var isSubmitting = false;
+
+  if (modalTitle) {
+    modalTitle.textContent = marketingOnly ? "Join the waitlist" : "Email";
+  }
+  submitBtn.textContent = marketingOnly ? "Join waitlist" : "Continue";
 
   function isValidEmail(value) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -2384,11 +2417,31 @@
     window.setTimeout(closeModal, 700);
   }
 
-  buyLinks.forEach(function (link) {
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-      openModal(link.getAttribute("data-buy-plan") || "");
-    });
+  function planFromLink(link) {
+    return link.getAttribute("data-buy-plan") || "";
+  }
+
+  function shouldOpenWaitlist(link) {
+    if (!marketingOnly) return link.classList.contains("price-cta") && link.hasAttribute("data-buy-plan");
+    var href = link.getAttribute("href") || "";
+    if (link.classList.contains("price-cta") && link.hasAttribute("data-buy-plan")) return true;
+    if (href.indexOf("/signup") === 0 || href.indexOf("/login") === 0) return true;
+    return false;
+  }
+
+  function onWaitlistClick(event) {
+    var link = event.currentTarget;
+    if (!shouldOpenWaitlist(link)) return;
+    if (!marketingOnly) {
+      var href = link.getAttribute("href") || "";
+      if (href.indexOf("/signup") === 0) return;
+    }
+    event.preventDefault();
+    openModal(planFromLink(link));
+  }
+
+  document.querySelectorAll(".price-cta[data-buy-plan], .nav-login, a[href^='/signup'], a[href^='/login']").forEach(function (link) {
+    link.addEventListener("click", onWaitlistClick);
   });
 
   modal.querySelectorAll("[data-buy-modal-close]").forEach(function (el) {
