@@ -16,6 +16,12 @@
   <meta name="twitter:image" content="https://ansaur.com/assets/example-dashboard-screenshot.png" />
   <!-- Marketing-only: waitlist modal instead of /signup and /login. Set to false when the full app is deployed. -->
   <meta name="ansaur-marketing-only" content="true" />
+  <script>
+    document.documentElement.classList.toggle(
+      "is-marketing-only",
+      document.querySelector('meta[name="ansaur-marketing-only"]')?.getAttribute("content") === "true"
+    );
+  </script>
   <link rel="icon" href="/assets/ansaur-a.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -203,6 +209,8 @@
     }
 
     .nav-login:hover { color: var(--scale-red); }
+
+    html.is-marketing-only .nav-login { display: none; }
 
     /* ── Buttons ── */
     .btn {
@@ -2423,8 +2431,9 @@
 
   function shouldOpenWaitlist(link) {
     if (!marketingOnly) return link.classList.contains("price-cta") && link.hasAttribute("data-buy-plan");
-    var href = link.getAttribute("href") || "";
     if (link.classList.contains("price-cta") && link.hasAttribute("data-buy-plan")) return true;
+    if (link.classList.contains("hero-cta") || link.classList.contains("nav-cta")) return true;
+    var href = link.getAttribute("href") || "";
     if (href.indexOf("/signup") === 0 || href.indexOf("/login") === 0) return true;
     return false;
   }
@@ -2440,7 +2449,7 @@
     openModal(planFromLink(link));
   }
 
-  document.querySelectorAll(".price-cta[data-buy-plan], .nav-login, a[href^='/signup'], a[href^='/login']").forEach(function (link) {
+  document.querySelectorAll(".price-cta[data-buy-plan], .hero-cta, .nav-cta, a[href^='/signup'], a[href^='/login']").forEach(function (link) {
     link.addEventListener("click", onWaitlistClick);
   });
 

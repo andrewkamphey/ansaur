@@ -1744,6 +1744,14 @@ body {
   transform: translateY(0);
   pointer-events: auto;
 }
+.variant-a.is-optlab-panel .main {
+  align-self: stretch;
+  min-height: 100dvh;
+}
+.variant-a.is-optlab-panel .content {
+  display: flex;
+  flex-direction: column;
+}
 .app-logo--research,
 .app-logo--writer {
   transform-origin: 88% 100%;
@@ -7023,6 +7031,10 @@ tr.wf-row-vacating td {
   --optlab-flip-ease: cubic-bezier(0.77, 0, 0.175, 1);
   position: relative;
   isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100%;
   background-color: var(--optlab-mode-bg);
 }
 .brain-page--grid.brain-page--mode-transitioning {
@@ -7190,12 +7202,14 @@ tr.wf-row-vacating td {
 .brain-page--grid .brain-page-inner {
   position: relative;
   z-index: 1;
+  flex: 1;
   width: 100%;
   max-width: none;
   margin: 0;
   padding-top: clamp(12px, 2vw, 20px);
   padding-left: clamp(20px, 2.5vw, 48px);
   padding-right: clamp(20px, 2.5vw, 48px);
+  padding-bottom: clamp(24px, 3vh, 48px);
 }
 .brain-page--grid.brain-page--mode-enhance {
   --optlab-mode-bg: oklch(0.74 0.048 288);
@@ -8570,22 +8584,47 @@ body.optlab-session-drag-active .brain-page--grid::after {
   }
 }
 @media (max-width: 960px) {
+  .brain-page--grid .brain-page-inner {
+    overflow-x: clip;
+  }
   .optlab-grid-frame {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: auto;
   }
   .optlab-grid-top-cell {
-    grid-column: span 1 !important;
-  }
-  .optlab-grid-top-cell:nth-child(n + 4) {
-    grid-row: 2;
+    grid-column: auto !important;
+    grid-row: auto !important;
   }
   .optlab-grid-flank--placed-left,
   .optlab-grid-flank--placed-right,
   .optlab-grid-spine--placed {
     grid-column: 1 / -1;
+    grid-row: auto;
   }
   .optlab-grid-spine--placed {
     order: -1;
+    min-width: 0;
+  }
+  .optlab-grid-well-header {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .optlab-grid-well-header-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .optlab-grid-well-mode-wrap {
+    width: 100%;
+    justify-content: center;
+  }
+  .optlab-grid-well-toolbar {
+    flex-wrap: wrap;
+  }
+  .optlab-grid-well-header-actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -8657,7 +8696,7 @@ body.optlab-session-drag-active .brain-page--grid::after {
     max-height: min(42vh, 28rem);
   }
   .brain-page--grid .optlab-draft-text {
-    min-height: 12rem;
+    min-height: min(20rem, 38vh);
   }
 }
 @media (min-width: 2560px) {
@@ -8680,7 +8719,7 @@ body.optlab-session-drag-active .brain-page--grid::after {
     max-height: min(48vh, 32rem);
   }
   .brain-page--grid .optlab-draft-text {
-    min-height: 14rem;
+    min-height: min(24rem, 44vh);
   }
 }
 
